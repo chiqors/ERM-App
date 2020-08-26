@@ -4948,9 +4948,9 @@ table tbody .border-bottom-info td {
 	float: left;
 	height: 56px;
 	text-align: center;
-	text-transform: uppercase;
 	width: 235px;
-	padding: 10px;
+    padding: 10px;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 992px) {
@@ -6516,7 +6516,7 @@ body[themebg-pattern="theme1"] {
 }
 
 .pcoded .pcoded-header[header-theme="theme1"] {
-	background: #271E39;
+	background: #6D4786;
 }
 
 .pcoded .pcoded-header[header-theme="theme1"] .input-group-addon,

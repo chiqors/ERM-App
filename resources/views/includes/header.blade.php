@@ -18,7 +18,7 @@
                 </div>
             </div>
             <a href="#">
-                <img class="img-fluid" src="{{ asset('assets/images/logo.png') }}" alt="Theme-Logo" />
+                Employee Relationship Management
             </a>
             <a class="mobile-options waves-effect waves-light">
                 <i class="ti-more"></i>

@@ -6,51 +6,12 @@
 
 @section('content')
 <div class="pcoded-content">
-    <!-- PAGE HEADER -->
-    <div class="page-header">
-        <div class="page-block">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Beranda</h5>
-                        <p class="m-b-0">Selamat Datang, Administrator!</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="#"><i class="fas fa-home"></i></a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#">Beranda</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- PAGE INNER CONTENT -->
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
                     <!-- HERE IS THE EXAMPLE CONTENT-->
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card">
-                                <div class="card-block">
-                                    <div class="row align-items-center m-l-0">
-                                        <div class="col-auto">
-                                            <i class="fas fa-cow f-30 text-c-red"></i>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h6 class="text-muted m-b-10">Total 1</h6>
-                                            <h2 class="m-b-0">0</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="card">
