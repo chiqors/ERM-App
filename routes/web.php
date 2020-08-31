@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/','pages.beranda');
+Route::view('/','livewire.beranda');
+Route::view('/login','livewire.login');
