@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 
     @yield('hstyles')
+    @livewireStyles
 
 </head>
 
@@ -108,6 +109,7 @@
     </script>
     <script type="text/javascript" src="{{ asset('assets/js/common-pages.js') }}"></script>
 
+    @livewireScripts
     @yield('fscripts')
 
 </body>
