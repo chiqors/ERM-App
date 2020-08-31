@@ -64,21 +64,5 @@
 @endsection
 
 @section('fscripts')
-<script type="text/javascript" src="{{ asset('assets/pages/dashboard/my-dashboard.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
-<script src="{{ asset('assets/pages/chart/float/jquery.flot.js') }}"></script>
-<script src="{{ asset('assets/pages/chart/float/jquery.flot.categories.js') }}"></script>
-<script src="{{ asset('assets/pages/chart/float/curvedLines.js') }}"></script>
-<script src="{{ asset('assets/pages/chart/float/jquery.flot.tooltip.min.js') }}"></script>
-
-<script src="{{ asset('assets/pages/widget/amchart/amcharts.js') }}"></script>
-<script src="{{ asset('assets/pages/widget/amchart/gauge.js') }}"></script>
-<script src="{{ asset('assets/pages/widget/amchart/serial.js') }}"></script>
-<script src="{{ asset('assets/pages/widget/amchart/light.js') }}"></script>
-<script src="{{ asset('assets/pages/widget/amchart/pie.min.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('assets/pages/widget/excanvas.js') }}"></script>
-
-<script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
 @endsection
