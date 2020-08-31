@@ -31,7 +31,7 @@
 
 </head>
 
-<body themebg-pattern="theme1">
+<body themebg-pattern="theme1" class="gradbg">
 
     <div class="theme-loader">
         <div class="loader-track">
@@ -87,24 +87,20 @@
     @yield('content')
 
     <!-- SCRIPTS -->
-    <script type="text/javascript" src="{{ asset(' bower_components/jquery/js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' bower_components/popper.js/js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
-
-    <script src="{{ asset(' assets/pages/waves/js/waves.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset(' bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset(' bower_components/modernizr/js/modernizr.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' bower_components/modernizr/js/css-scrollbars.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset(' bower_components/i18next/js/i18next.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
     <script type="text/javascript"
         src="{{ asset(' bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset(' assets/js/common-pages.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/common-pages.js') }}"></script>
 
     @yield('fscripts')
 
