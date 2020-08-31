@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'BerandaController@index')->name('beranda');
+Route::view('/','pages.beranda');
