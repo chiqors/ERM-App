@@ -25,12 +25,12 @@
                         <div class="modal-body mx-3">
                             <div class="md-form mb-3">
                                 <label>Employee Name</label>
-                                <input type="text" class="form-control" wire:model="full_name">
+                                <input type="text" class="form-control form-control-sm" wire:model="full_name">
                             </div>
 
                             <div class="md-form mb-3">
                                 <label>Position</label>
-                                <select class="form-control" wire:model="position">
+                                <select class="form-control form-control-sm" wire:model="position">
                                     <option value="Regular">Regular</option>
                                     <option value="Manager">Manager</option>
                                     <option value="Manager">Secretary</option>
@@ -40,23 +40,30 @@
 
                             <div class="md-form mb-3">
                                 <label>Join Date</label>
-                                <input id="join_date_employee" type="date" class="form-control" wire:model="join_date">
+                                <input id="join_date_employee" type="date" class="form-control form-control-sm" wire:model="join_date">
                             </div>
 
                             <div class="md-form mb-3">
                                 <label>End Date</label>
-                                <input id="end_date_employee" type="date" class="form-control" wire:model="end_date">
+                                <input id="end_date_employee" type="date" class="form-control form-control-sm" wire:model="end_date">
                                 <input type="hidden" class="form-control" value="Aktif" wire:model="status">
                             </div>
 
                             <div class="md-form mb-3">
                                 <label>Contract (Days) =&nbsp</label><label id="contract" class="font-weight-bold"></label>
-                                <input type="hidden" class="form-control" wire:model="contract" readonly>
+                                <input type="hidden" class="form-control form-control-sm" wire:model="contract" readonly>
                             </div>
-
+                            <div class="md-form mb-3">
+                                <label>CV</label>
+                                <input type="file" class="form-control-file border">
+                            </div>
+                            <div class="md-form mb-3">
+                                <label>KTP</label>
+                                <input type="file" class="form-control-file border">
+                            </div>
                             <div class="md-form">
-                                <label>Upload file</label>
-                                <input type="file" class="form-control">
+                                <label>Certificate</label>
+                                <input type="file" class="form-control-file border">
                             </div>
                         </div>
                     </form>
@@ -67,8 +74,134 @@
             </div>
         </div>
     </div>
+    <!--Modal Pop Up Form Edit employee-->
+    <div class="modal fade" id="modalEditEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Edit Employee</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-3">
+                            <label>Employee Name</label>
+                            <input type="text" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="md-form mb-3">
+                            <label>Position</label>
+                            <select class="form-control">
+                                <option>--Select Job--</option>
+                                <option>CTO</option>
+                                <option>HRD</option>
+                                <option>Programer</option>
+                            </select>
+                        </div>
+
+                        <div class="md-form mb-3">
+                            <label>Join Date</label>
+                            <input type="date" class="form-control form-control-sm">
+                        </div>
+                        <div class="md-form mb-3">
+                            <label>End Date</label>
+                            <input type="date" class="form-control form-control-sm">
+                        </div>
+                        <div class="md-form mb-3">
+                            <label>Contract</label>
+                            <input type="text" class="form-control form-control-sm" readonly >
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer d-flex justify-content-right">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Pop Up Form Lihat Detail employee-->
+    <div class="modal fade" id="modalDetailEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Detail Employee</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-3">
+                        <label>Employee Name</label>
+                        <input type="text" class="form-control form-control-sm">
+                    </div>
+                    <div class="md-form mb-3">
+                        <label>Position</label>
+                        <input type="text" class="form-control form-control-sm">
+                    </div>
+
+                    <div class="md-form mb-3">
+                        <label>Join Date</label>
+                        <input type="date" class="form-control form-control-sm">
+                    </div>
+                    <div class="md-form mb-3">
+                        <label>End Date</label>
+                        <input type="date" class="form-control form-control-sm">
+                    </div>
+                    <div class="md-form mb-3">
+                        <label>Contract</label>
+                        <input type="text" class="form-control form-control-sm" readonly >
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-right">
+                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--Modal Pop Up Form Upload File employee-->
+    <div class="modal fade" id="modalUploadFileEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Upload File</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-3">
+                        <label>Employee Name</label>
+                        <input type="text" class="form-control form-control-sm" readonly>
+                    </div>
+                    <div class="md-form mb-3">
+                        <label>CV</label>
+                        <input type="file" class="form-control-file border">
+                    </div>
+                    <div class="md-form mb-3">
+                        <label>KTP</label>
+                        <input type="file" class="form-control-file border">
+                    </div>
+                    <div class="md-form mb-3">
+                        <label>Certificate</label>
+                        <input type="file" class="form-control-file border">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-right">
+                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <!--Modal Pop Up Form event-->
-    <div class="modal fade" id="modalAddEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAddEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -84,12 +217,12 @@
                     </div>
 
                     <div class="md-form mb-3">
-                        <label>Position</label>
+                        <label>Employee Name</label>
                         <select class="form-control">
-                            <option>--Select Job--</option>
-                            <option>CTO</option>
-                            <option>HRD</option>
-                            <option>Programer</option>
+                            <option>--Select Employee--</option>
+                            <option>Employee 1</option>
+                            <option>Employee 2</option>
+                            <option>Employee 3</option>
                         </select>
                     </div>
 
@@ -97,25 +230,26 @@
                         <label>Date</label>
                         <input type="date" class="form-control ">
                     </div>
-
-                    <div class="form-row md-form mb-3">
-                        <div class="form-group col-md-2">
-                            <label>Duration</label>
-                            <input type="text" class="form-control">
-
+                    <div class="md-form mb-3">
+                        <label>Duration</label>
+                    <form class="form-inline">
+                        <input type="text" class="form-control form-control mb-2 mr-sm-3">
+                        <div class="form-check form-check-inline mb-2 mr-sm-3">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1"> Day
+                          </label>
                         </div>
-                        <div class="form-check form-check-inline mx-5">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">Day</label>
-                        </div>
-                        <div class="form-check form-check-inline mx-5">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label" for="inlineRadio2">Month</label>
-                        </div>
-                        <div class="form-check form-check-inline mx-5">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label" for="inlineRadio3">Year</label>
-                        </div>
+                        <div class="form-check form-check-inline mb-2 mr-sm-3">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2"> Month
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline mb-2 mr-sm-3">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option3"> Year
+                            </label>
+                          </div>
+                      </form>
                     </div>
                     <div class="modal-footer d-flex justify-content-right">
                         <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
@@ -230,40 +364,100 @@
                                                         <tr>
                                                             <th>Name</th>
                                                             <th>Status</th>
-                                                            <th>File</th>
-                                                            <th>Action</th>
+                                                            <th width="50">File</th>
+                                                            <th width="70">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td>Tiger Nixon</td>
                                                             <td>System Architect</td>
-                                                            <td>Edinburgh</td>
-                                                            <td>61</td>
+                                                            <td><a href="" class="icofont icofont-download mr-3"></a>
+                                                                <a href="" class="icofont icofont-upload"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalUploadFileEmployee"></a></td>
+                                                            <td><a href="" class="icofont icofont-edit mr-3"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalEditEmployee"></a>
+                                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                                                <a href="" class="icofont icofont-file-text"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDetailEmployee"></a></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Garrett Winters</td>
                                                             <td>Accountant</td>
-                                                            <td>Tokyo</td>
-                                                            <td>63</td>
+                                                            <td><a href="" class="icofont icofont-download mr-3"></a>
+                                                                <a href="" class="icofont icofont-upload"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalUploadFileEmployee"></a></td>
+                                                            <td><a href="" class="icofont icofont-edit mr-3"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalEditEmployee"></a>
+                                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                                                <a href="" class="icofont icofont-file-text"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDetailEmployee"></a></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Ashton Cox</td>
                                                             <td>Junior Technical Author</td>
-                                                            <td>San Francisco</td>
-                                                            <td>66</td>
+                                                            <td><a href="" class="icofont icofont-download mr-3"></a>
+                                                                <a href="" class="icofont icofont-upload"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalUploadFileEmployee"></a></td>
+                                                            <td><a href="" class="icofont icofont-edit mr-3"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalEditEmployee"></a>
+                                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                                                <a href="" class="icofont icofont-file-text"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDetailEmployee"></a></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Cedric Kelly</td>
                                                             <td>Senior Javascript Developer</td>
-                                                            <td>Edinburgh</td>
-                                                            <td>22</td>
+                                                            <td><a href="" class="icofont icofont-download mr-3"></a>
+                                                                <a href="" class="icofont icofont-upload"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalUploadFileEmployee"></a></td>
+                                                            <td><a href="" class="icofont icofont-edit mr-3"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalEditEmployee"></a>
+                                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                                                <a href="" class="icofont icofont-file-text"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDetailEmployee"></a></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Airi Satou</td>
                                                             <td>Accountant</td>
-                                                            <td>Tokyo</td>
-                                                            <td>33</td>
+                                                            <td><a href="" class="icofont icofont-download mr-3"></a>
+                                                                <a href="" class="icofont icofont-upload"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalUploadFileEmployee"></a></td>
+                                                            <td><a href="" class="icofont icofont-edit mr-3"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalEditEmployee"></a>
+                                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                                                <a href="" class="icofont icofont-file-text"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDetailEmployee"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Brielle Williamson</td>
+                                                            <td>Integration Specialist</td>
+                                                            <td><a href="" class="icofont icofont-download mr-3"></a>
+                                                                <a href="" class="icofont icofont-upload"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalUploadFileEmployee"></a></td>
+                                                            <td><a href="" class="icofont icofont-edit mr-3"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalEditEmployee"></a>
+                                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                                                <a href="" class="icofont icofont-file-text"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDetailEmployee"></a></td>
                                                         </tr>
                                                     </tbody>
 
