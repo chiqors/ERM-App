@@ -60,7 +60,6 @@ class Beranda extends Component
             'full_name' => 'required',
             'status' => 'required',
             'join_date' => 'required',
-            'end_date' => 'required',
             'contract_duration' => 'required',
         ]);
 
@@ -105,7 +104,6 @@ class Beranda extends Component
             'full_name' => 'required',
             'status' => 'required',
             'join_date' => 'required',
-            'end_date' => 'required',
             'contract_duration' => 'required',
         ]);
 

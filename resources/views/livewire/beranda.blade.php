@@ -21,47 +21,47 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body mx-3">
-                        <div class="md-form mb-3">
-                            <label>Employee Name</label>
-                            <input type="text" class="form-control ">
-                        </div>
+                    <form>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-3">
+                                <label>Employee Name</label>
+                                <input type="text" class="form-control" wire:model="full_name">
+                            </div>
 
-                        <div class="md-form mb-3">
-                            <label>Position</label>
-                            <input type="text" class="form-control ">
-                        </div>
+                            <div class="md-form mb-3">
+                                <label>Position</label>
+                                <select class="form-control" wire:model="position">
+                                    <option value="Regular">Regular</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Manager">Secretary</option>
+                                    <option value="Manager">Owner</option>
+                                </select>
+                            </div>
 
-                        <div class="md-form mb-3">
-                            <label>Join Date</label>
-                            <input type="date" class="form-control ">
-                        </div>
+                            <div class="md-form mb-3">
+                                <label>Join Date</label>
+                                <input id="join_date_employee" type="date" class="form-control" wire:model="join_date">
+                            </div>
 
-                        <div class="form-row md-form mb-3">
-                            <div class="form-group col-md-2">
-                                <label>Contract</label>
-                                <input type="text" class="form-control">
+                            <div class="md-form mb-3">
+                                <label>End Date</label>
+                                <input id="end_date_employee" type="date" class="form-control" wire:model="end_date">
+                                <input type="hidden" class="form-control" value="Aktif" wire:model="status">
                             </div>
-                            <div class="form-check form-check-inline mx-5">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
-                                <label class="form-check-label">Day</label>
+
+                            <div class="md-form mb-3">
+                                <label>Contract (Days) =&nbsp</label><label id="contract" class="font-weight-bold"></label>
+                                <input type="hidden" class="form-control" wire:model="contract" readonly>
                             </div>
-                            <div class="form-check form-check-inline mx-5">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                                <label class="form-check-label">Month</label>
-                            </div>
-                            <div class="form-check form-check-inline mx-5">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option3">
-                                <label class="form-check-label">Year</label>
+
+                            <div class="md-form">
+                                <label>Upload file</label>
+                                <input type="file" class="form-control">
                             </div>
                         </div>
-                        <div class="md-form">
-                            <label>Upload file</label>
-                            <input type="file" class="form-control">
-                        </div>
-                    </div>
+                    </form>
                     <div class="modal-footer d-flex justify-content-right">
-                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                        <button wire:click.prevent="store_employee()" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">Submit</button>
                     </div>
                 </div>
             </div>
@@ -284,23 +284,6 @@
 @endsection
 
 @section('fscripts')
-
-</script>
-
-<!-- <script type="text/javascript" src="{{ asset('bower_components/jquery/js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}">
-    </script>
-
-    <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('assets/pages/prism/custom-prism.js') }}"></script>
- -->
-
 <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('assets/pages/data-table/js/jszip.min.js') }}"></script>
@@ -316,4 +299,25 @@
 <script type="text/javascript" src="{{ asset('bower_components/moment/js/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/fullcalendar/js/fullcalendar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/pages/full-calender/calendar.js') }}"></script>
+
+<script type="text/javascript">
+    function daysdifference(firstDate, secondDate){
+        var startDay = new Date(firstDate);
+        var endDay = new Date(secondDate);
+
+        var millisBetween = startDay.getTime() - endDay.getTime();
+        var days = millisBetween / (1000 * 3600 * 24);
+
+        return Math.round(Math.abs(days));
+    }
+    $(function () {
+        $("#end_date_employee").blur(function() {
+            var join_date = $("#join_date_employee").val();
+            var end_date = $("#end_date_employee").val();
+            var contract_result = daysdifference(join_date, end_date);
+            $("#contract").text(contract_result);
+        });
+    });
+</script>
+
 @endsection
