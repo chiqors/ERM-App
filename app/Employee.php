@@ -29,4 +29,9 @@ class Employee extends Model
     {
         return $this->hasMany('App\EmployeeEvent','employee_id');
     }
+
+    public function employee_files()
+    {
+        return $this->hasOne('App\EmployeeFiles','employee_id');
+    }
 }

@@ -6,38 +6,55 @@ use Livewire\Component;
 // use Livewire\WithPagination;
 use App\Employee;
 use App\Event;
+use App\ActivityLogs;
 
 class Beranda extends Component
 {
     // use WithPagination;
 
-    public $employees, $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration;
-    public $events, $event_id, $event_name, $date, $detail_event, $event_duration, $event_type;
+    public $employees, $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration, $cv, $ktp, $certificate;
+    public $events, $event_id, $event_name, $event_start, $event_end, $event_details, $event_type;
 
     public $updateMode = false;
 
     /**
      * mount or construct function
      */
-    public function mount($id)
-    {
-        // $post = Post::find($id);
+    // public function mount($id)
+    // {
+    //     $post = Post::find($id);
 
-        // if($post) {
-        //     $this->postId   = $post->id;
-        //     $this->title    = $post->title;
-        //     $this->content  = $post->content;
-        // }
-    }
+    //     if($post) {
+    //         $this->postId   = $post->id;
+    //         $this->title    = $post->title;
+    //         $this->content  = $post->content;
+    //     }
+    // }
 
     public function render()
     {
         $this->employees = Employee::all();
-        $this->events = Event::all();
-        $data = array(
-            'title' => 'Beranda'
-        );
-        return view('livewire.beranda')->with($data);
+        $this->events = forCalendar(Event::all()->toArray());
+        return view('livewire.beranda');
+    }
+
+    // ------------------------
+    // | Activity Logs Action |
+    // ------------------------
+
+    public function store_activity_logs($id,$bool_status)
+    {
+        $post = new ActivityLogs();
+        $post->event_id = $id;
+        if ($bool_status) {
+            $post->status = 'Accepted';
+        } else {
+            $post->status = 'Rejeted';
+        }
+        $post->time = date("Y-m-d H:i:s");
+        $post->save();
+
+        session()->flash('message', 'Activity Logs has been stored.');
     }
 
     // -----------------
@@ -63,6 +80,8 @@ class Beranda extends Component
             'contract_duration' => 'required',
         ]);
 
+        Storage::cloud()->makeDirectory($this->full_name);
+
         $post = new Employee();
         $post->full_name = $this->full_name;
         $post->addition_information = $this->addition_information;
@@ -71,6 +90,16 @@ class Beranda extends Component
         $post->join_date = $this->join_date;
         $post->end_date = $this->end_date;
         $post->contract_duration = $this->contract_duration;
+        if($this->cv) {
+            $post->employee_files->cv = $this->cv;
+        }
+        if($this->ktp) {
+            $post->employee_files->ktp = $this->ktp;
+        }
+        if($this->certificate) {
+            $post->employee_files->certificate = $this->certificate;
+        }
+        $post->employee_files->save();
         $post->save();
 
         session()->flash('message', 'New Employee has been added.');
@@ -123,10 +152,60 @@ class Beranda extends Component
         $this->resetInputFields_employee();
     }
 
+    public function update_employee_files()
+    {
+        $this->validate([
+            'cv' => 'required',
+            'ktp' => 'required',
+            'certificate' => 'required',
+        ]);
+
+        $post = Employee::find($this->employee_id);
+        if($this->cv) {
+            $post->employee_files->cv = $this->cv;
+        }
+        if($this->ktp) {
+            $post->employee_files->ktp = $this->ktp;
+        }
+        if($this->certificate) {
+            $post->employee_files->certificate = $this->certificate;
+        }
+        $post->employee_files->save();
+
+        $this->updateMode = false;
+
+        session()->flash('message', 'Employee Files #'.$this->employee_id.' has been updated.');
+        $this->resetInputFields_employee();
+    }
+
+    /*public function download_employee_files($id)
+    {
+        $filename = $id.'-cv.pdf';
+
+        $dir = '/';
+        $recursive = false; // Get subdirectories also?
+        $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+        $file = $contents
+            ->where('type', '=', 'file')
+            ->where('filename', '=', pathinfo($filename, PATHINFO_FILENAME))
+            ->where('extension', '=', pathinfo($filename, PATHINFO_EXTENSION))
+            ->first(); // there can be duplicate file names!
+
+        //return $file; // array with file info
+
+        $rawData = Storage::cloud()->get($file['path']);
+
+        return response($rawData, 200)
+            ->header('ContentType', $file['mimetype'])
+            ->header('Content-Disposition', "attachment; filename='$filename'");
+    }*/
+
     public function destroy_employee($id)
     {
+        Employee::find($id)->employee_files->delete();
         Employee::find($id)->delete();
-        session()->flash('message', 'Employee #'.$this->employee_id.' has been deleted.');
+        session()->flash('message', 'Employee #'.$id.' has been deleted.');
     }
 
     // --------------
@@ -135,9 +214,9 @@ class Beranda extends Component
 
     private function resetInputFields_event(){
         $this->event_name = '';
-        $this->date = '';
-        $this->detail_event = '';
-        $this->event_duration = '';
+        $this->event_start = '';
+        $this->event_end = '';
+        $this->event_details = '';
         $this->event_type = '';
     }
 
@@ -145,17 +224,17 @@ class Beranda extends Component
     {
         $this->validate([
             'event_name' => 'required',
-            'date' => 'required',
-            'detail_event' => 'required',
-            'event_duration' => 'required',
+            'event_start' => 'required',
+            'event_end' => 'required',
+            'event_details' => 'required',
             'event_type' => 'required',
         ]);
 
         $post = new Event();
         $post->event_name = $request->event_name;
-        $post->date = $request->date;
-        $post->detail_event = $request->detail_event;
-        $post->event_duration = $request->event_duration;
+        $post->event_start = $request->event_start;
+        $post->event_end = $request->event_end;
+        $post->event_details = $request->event_details;
         $post->event_type = $request->event_type;
         $post->save();
 
@@ -167,9 +246,9 @@ class Beranda extends Component
     {
         $post = Event::findOrFail($id);
         $this->event_name = $post->event_name;
-        $this->date = $post->date;
-        $this->detail_event = $post->detail_event;
-        $this->event_duration = $post->event_duration;
+        $this->event_start = $post->event_start;
+        $this->event_end = $post->event_end;
+        $this->event_details = $post->event_details;
         $this->event_type = $post->event_type;
 
         $this->updateMode = true;
@@ -185,17 +264,17 @@ class Beranda extends Component
     {
         $this->validate([
             'event_name' => 'required',
-            'date' => 'required',
-            'detail_event' => 'required',
-            'event_duration' => 'required',
+            'event_start' => 'required',
+            'event_end' => 'required',
+            'event_details' => 'required',
             'event_type' => 'required',
         ]);
 
         $post = Event::find($this->event_id);
         $post->event_name = $this->event_name;
-        $post->date = $this->date;
-        $post->detail_event = $this->detail_event;
-        $post->event_duration = $this->event_duration;
+        $post->event_start = $this->event_start;
+        $post->event_end = $this->event_end;
+        $post->event_details = $this->event_details;
         $post->event_type = $this->event_type;
         $post->save();
 
