@@ -221,33 +221,140 @@
                 </div>
 
                 <div class="md-form mb-3">
-                    <label>Date</label>
+                    <label>Start Date</label>
                     <input type="date" class="form-control ">
                 </div>
                 <div class="md-form mb-3">
-                    <label>Duration</label>
-                    <form class="form-inline">
-                        <input type="text" class="form-control form-control mb-2 mr-sm-3">
-                        <div class="form-check form-check-inline mb-2 mr-sm-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
-                                Day
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline mb-2 mr-sm-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                                Month
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline mb-2 mr-sm-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option3">
-                                Year
-                            </label>
-                        </div>
-                    </form>
+                    <label>End Date</label>
+                    <input type="date" class="form-control ">
                 </div>
+                <div class="modal-footer d-flex justify-content-right">
+                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Pop Up Controll event-->
+<div class="modal fade" id="modalControllEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Event Controll</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="row">
+                    <div class="col-xl-12 col-12">
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table id="EventList" class="table table-striped table-bordered nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th width="50">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
+                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
+                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
+                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
+                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Airi Satou</td>
+                                            <td>Accountant</td>
+                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
+                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Brielle Williamson</td>
+                                            <td>Integration Specialist</td>
+                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
+                                                <a href="" class="icofont icofont-bin mr-3"></a>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Pop Up Edit event-->
+<div class="modal fade" id="modalEditEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Event</h4>
+                <button type="button" class="close" data-toggle="modal" data-target="#modalControllEvent"
+                    data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-3">
+                    <label>Event Name</label>
+                    <input type="text" class="form-control ">
+                </div>
+
+                <div class="md-form mb-3">
+                    <label>Employee Name</label>
+                    <select class="form-control">
+                        <option>--Select Employee--</option>
+                        <option>Employee 1</option>
+                        <option>Employee 2</option>
+                        <option>Employee 3</option>
+                    </select>
+                </div>
+
+                <div class="md-form mb-3">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control ">
+                </div>
+                <div class="md-form mb-3">
+                    <label>End Date</label>
+                    <input type="date" class="form-control ">
+                </div>
+                
                 <div class="modal-footer d-flex justify-content-right">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
                 </div>
@@ -269,6 +376,8 @@
                                     <div class="card-header-right">
                                         <!--Button Panggil Pop Up-->
                                         <div class="text-center">
+                                            <a href="" class="btn btn-default btn-sm icofont icofont-edit"
+                                                data-toggle="modal" data-target="#modalControllEvent"></a>
                                             <a href="" class="btn btn-default btn-sm icofont icofont-plus"
                                                 data-toggle="modal" data-target="#modalAddEvent"></a>
                                         </div>
@@ -299,45 +408,149 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Event</h5>
-                            </div>
-                            <div class="card-block table-border-style">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Status</th>
-                                                <th>File</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                                <td>@twitter</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="row">
+                            <div class="col-xl-12 col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Event Today</h5>
+                                    </div>
+                                    <div class="card-block table-border-style">
+                                        <div class="dataTables">
+                                            <table id="EventListToday" class="table table-striped table-bordered nowrap">
+                                                <thead >
+                                                    <tr role="row" style="height: 0px;">
+                                                            <th>Name</th>
+                                                            <th>Status</th>
+                                                            <th>Status</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Tiger Nixon</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td><a href="" class="icofont icofont-check mr-3"></a>
+                                                            <a href="" class="icofont icofont-close mr-3"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Garrett Winters</td>
+                                                        <td>Accountant</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td><a href="" class="icofont icofont-check mr-3"></a>
+                                                            <a href="" class="icofont icofont-close mr-3"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ashton Cox</td>
+                                                        <td>Junior Technical Author</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td><a href="" class="icofont icofont-check mr-3"></a>
+                                                            <a href="" class="icofont icofont-close mr-3"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Cedric Kelly</td>
+                                                        <td>Senior Javascript Developer</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td><a href="" class="icofont icofont-check mr-3"></a>
+                                                            <a href="" class="icofont icofont-close mr-3"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Airi Satou</td>
+                                                        <td>Accountant</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td><a href="" class="icofont icofont-check mr-3"></a>
+                                                            <a href="" class="icofont icofont-close mr-3"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Brielle Williamson</td>
+                                                        <td>Integration Specialist</td>
+                                                        <td>System Architect</td>
+                                                        <td>System Architect</td>
+                                                        <td><a href="" class="icofont icofont-check mr-3"></a>
+                                                            <a href="" class="icofont icofont-close mr-3"></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row align-items-center m-l-0">
+                                            <div class="col-auto">
+                                                <i class="icofont icofont-users f-30 text-c-blue"></i>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h6 class="text-muted m-b-10">Happy Customer</h6>
+                                                <h2 class="m-b-0">2</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row align-items-center m-l-0">
+                                            <div class="col-auto">
+                                                <i class="icofont icofont-plus f-30 text-c-green"></i>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h6 class="text-muted m-b-10">Happy Customers</h6>
+                                                <h2 class="m-b-0">5984</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row align-items-center m-l-0">
+                                            <div class="col-auto">
+                                                <i class="icofont icofont-plus f-30 text-c-red"></i>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h6 class="text-muted m-b-10">Leave</h6>
+                                                <h2 class="m-b-0">2</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row align-items-center m-l-0">
+                                            <div class="col-auto">
+                                                <i class="icofont icofont-plus f-30 text-c-blue"></i>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h6 class="text-muted m-b-10">Happy Customers</h6>
+                                                <h2 class="m-b-0">5984</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -488,5 +701,25 @@
     });
 
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#EventList').DataTable();
+        $('#EventListToday').DataTable( {
+            "searching": false,
+            "ordering": false,
+            "scrollY": 200,
+            "scrollX": true,
+            "paging": false,
+            "scrollCollapse": true,
+            "fixedColumns": true
+        } );
+        
+        
+        
+    });
+    
+
+</script>
+
 
 @endsection
