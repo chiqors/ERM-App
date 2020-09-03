@@ -466,7 +466,6 @@
 <script type="text/javascript" src="{{ asset('assets/js/classie.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/moment/js/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/fullcalendar/js/fullcalendar.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/pages/full-calender/calendar.js') }}"></script>
 
 <script type="text/javascript">
     function daysdifference(firstDate, secondDate) {
@@ -486,7 +485,23 @@
             $("#contract").text(contract_result);
         });
     });
+</script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,listMonth'
+            },
+            navLinks: true,
+            businessHours: false,
+            editable: false,
+            droppable: false,
+            events: {!! $events !!}
+        });
+    });
 </script>
 
 @endsection

@@ -19,25 +19,22 @@ class Beranda extends Component
     /**
      * mount or construct function
      */
-    public function mount($id)
-    {
-        // $post = Post::find($id);
+    // public function mount($id)
+    // {
+    //     $post = Post::find($id);
 
-        // if($post) {
-        //     $this->postId   = $post->id;
-        //     $this->title    = $post->title;
-        //     $this->content  = $post->content;
-        // }
-    }
+    //     if($post) {
+    //         $this->postId   = $post->id;
+    //         $this->title    = $post->title;
+    //         $this->content  = $post->content;
+    //     }
+    // }
 
     public function render()
     {
         $this->employees = Employee::all();
-        $this->events = Event::all();
-        $data = array(
-            'title' => 'Beranda'
-        );
-        return view('livewire.beranda')->with($data);
+        $this->events = forCalendar(Event::all()->toArray());
+        return view('livewire.beranda');
     }
 
     // -----------------
