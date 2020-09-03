@@ -12,7 +12,7 @@ class Beranda extends Component
 {
     // use WithPagination;
 
-    public $employees, $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration;
+    public $employees, $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration, $cv, $ktp, $certificate;
     public $events, $event_id, $event_name, $event_start, $event_end, $event_details, $event_type;
 
     public $updateMode = false;
@@ -80,6 +80,8 @@ class Beranda extends Component
             'contract_duration' => 'required',
         ]);
 
+        Storage::cloud()->makeDirectory($this->full_name);
+
         $post = new Employee();
         $post->full_name = $this->full_name;
         $post->addition_information = $this->addition_information;
@@ -88,6 +90,16 @@ class Beranda extends Component
         $post->join_date = $this->join_date;
         $post->end_date = $this->end_date;
         $post->contract_duration = $this->contract_duration;
+        if($this->cv) {
+            $post->employee_files->cv = $this->cv;
+        }
+        if($this->ktp) {
+            $post->employee_files->ktp = $this->ktp;
+        }
+        if($this->certificate) {
+            $post->employee_files->certificate = $this->certificate;
+        }
+        $post->employee_files->save();
         $post->save();
 
         session()->flash('message', 'New Employee has been added.');
@@ -140,10 +152,60 @@ class Beranda extends Component
         $this->resetInputFields_employee();
     }
 
+    public function update_employee_files()
+    {
+        $this->validate([
+            'cv' => 'required',
+            'ktp' => 'required',
+            'certificate' => 'required',
+        ]);
+
+        $post = Employee::find($this->employee_id);
+        if($this->cv) {
+            $post->employee_files->cv = $this->cv;
+        }
+        if($this->ktp) {
+            $post->employee_files->ktp = $this->ktp;
+        }
+        if($this->certificate) {
+            $post->employee_files->certificate = $this->certificate;
+        }
+        $post->employee_files->save();
+
+        $this->updateMode = false;
+
+        session()->flash('message', 'Employee Files #'.$this->employee_id.' has been updated.');
+        $this->resetInputFields_employee();
+    }
+
+    /*public function download_employee_files($id)
+    {
+        $filename = $id.'-cv.pdf';
+
+        $dir = '/';
+        $recursive = false; // Get subdirectories also?
+        $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+        $file = $contents
+            ->where('type', '=', 'file')
+            ->where('filename', '=', pathinfo($filename, PATHINFO_FILENAME))
+            ->where('extension', '=', pathinfo($filename, PATHINFO_EXTENSION))
+            ->first(); // there can be duplicate file names!
+
+        //return $file; // array with file info
+
+        $rawData = Storage::cloud()->get($file['path']);
+
+        return response($rawData, 200)
+            ->header('ContentType', $file['mimetype'])
+            ->header('Content-Disposition', "attachment; filename='$filename'");
+    }*/
+
     public function destroy_employee($id)
     {
+        Employee::find($id)->employee_files->delete();
         Employee::find($id)->delete();
-        session()->flash('message', 'Employee #'.$this->employee_id.' has been deleted.');
+        session()->flash('message', 'Employee #'.$id.' has been deleted.');
     }
 
     // --------------
