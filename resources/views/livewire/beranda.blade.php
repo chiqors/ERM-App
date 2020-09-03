@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="md-form mb-3">
-                        <label>Contract (Days) =&nbsp</label><label id="contract" class="font-weight-bold"></label>
+                        <label>Contract (Days) =&nbsp</label><label id="contract" class="font-weight-bold">0</label>
                         <input type="hidden" class="form-control form-control-sm" wire:model="contract" readonly>
                     </div>
                     <div class="md-form mb-3">
@@ -465,6 +465,29 @@
 <script src="{{ asset('assets/pages/data-table/js/data-table-custom.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/classie.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/moment/js/moment.min.js') }}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,listMonth'
+            },
+            navLinks: true,
+            businessHours: false,
+            editable: false,
+            droppable: false,
+            drop: function () {
+                if ($('#checkbox2').is(':checked')) {
+                    $(this).remove();
+                }
+            },
+            events: {!! $events !!}
+        });
+    });
+</script>
+
 <script type="text/javascript" src="{{ asset('bower_components/fullcalendar/js/fullcalendar.min.js') }}"></script>
 
 <script type="text/javascript">
@@ -483,23 +506,6 @@
             var end_date = $("#end_date_employee").val();
             var contract_result = daysdifference(join_date, end_date);
             $("#contract").text(contract_result);
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,listMonth'
-            },
-            navLinks: true,
-            businessHours: false,
-            editable: false,
-            droppable: false,
-            events: {!! $events !!}
         });
     });
 </script>

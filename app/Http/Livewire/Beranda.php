@@ -6,13 +6,14 @@ use Livewire\Component;
 // use Livewire\WithPagination;
 use App\Employee;
 use App\Event;
+use App\ActivityLogs;
 
 class Beranda extends Component
 {
     // use WithPagination;
 
     public $employees, $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration;
-    public $events, $event_id, $event_name, $date, $detail_event, $event_duration, $event_type;
+    public $events, $event_id, $event_name, $event_start, $event_end, $event_details, $event_type;
 
     public $updateMode = false;
 
@@ -35,6 +36,25 @@ class Beranda extends Component
         $this->employees = Employee::all();
         $this->events = forCalendar(Event::all()->toArray());
         return view('livewire.beranda');
+    }
+
+    // ------------------------
+    // | Activity Logs Action |
+    // ------------------------
+
+    public function store_activity_logs($id,$bool_status)
+    {
+        $post = new ActivityLogs();
+        $post->event_id = $id;
+        if ($bool_status) {
+            $post->status = 'Accepted';
+        } else {
+            $post->status = 'Rejeted';
+        }
+        $post->time = date("Y-m-d H:i:s");
+        $post->save();
+
+        session()->flash('message', 'Activity Logs has been stored.');
     }
 
     // -----------------
@@ -132,9 +152,9 @@ class Beranda extends Component
 
     private function resetInputFields_event(){
         $this->event_name = '';
-        $this->date = '';
-        $this->detail_event = '';
-        $this->event_duration = '';
+        $this->event_start = '';
+        $this->event_end = '';
+        $this->event_details = '';
         $this->event_type = '';
     }
 
@@ -142,17 +162,17 @@ class Beranda extends Component
     {
         $this->validate([
             'event_name' => 'required',
-            'date' => 'required',
-            'detail_event' => 'required',
-            'event_duration' => 'required',
+            'event_start' => 'required',
+            'event_end' => 'required',
+            'event_details' => 'required',
             'event_type' => 'required',
         ]);
 
         $post = new Event();
         $post->event_name = $request->event_name;
-        $post->date = $request->date;
-        $post->detail_event = $request->detail_event;
-        $post->event_duration = $request->event_duration;
+        $post->event_start = $request->event_start;
+        $post->event_end = $request->event_end;
+        $post->event_details = $request->event_details;
         $post->event_type = $request->event_type;
         $post->save();
 
@@ -164,9 +184,9 @@ class Beranda extends Component
     {
         $post = Event::findOrFail($id);
         $this->event_name = $post->event_name;
-        $this->date = $post->date;
-        $this->detail_event = $post->detail_event;
-        $this->event_duration = $post->event_duration;
+        $this->event_start = $post->event_start;
+        $this->event_end = $post->event_end;
+        $this->event_details = $post->event_details;
         $this->event_type = $post->event_type;
 
         $this->updateMode = true;
@@ -182,17 +202,17 @@ class Beranda extends Component
     {
         $this->validate([
             'event_name' => 'required',
-            'date' => 'required',
-            'detail_event' => 'required',
-            'event_duration' => 'required',
+            'event_start' => 'required',
+            'event_end' => 'required',
+            'event_details' => 'required',
             'event_type' => 'required',
         ]);
 
         $post = Event::find($this->event_id);
         $post->event_name = $this->event_name;
-        $post->date = $this->date;
-        $post->detail_event = $this->detail_event;
-        $post->event_duration = $this->event_duration;
+        $post->event_start = $this->event_start;
+        $post->event_end = $this->event_end;
+        $post->event_details = $this->event_details;
         $post->event_type = $this->event_type;
         $post->save();
 

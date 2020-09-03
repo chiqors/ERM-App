@@ -7,11 +7,15 @@ function forCalendar($datetime){
         $datetime[$k]['title'] = $datetime[$k]['event_name'];
         $datetime[$k]['start'] = $datetime[$k]['date'];
         $datetime[$k]['end'] = $end;
-        $datetime[$k]['rendering'] = 'background';
-        $datetime[$k]['borderColor'] = '#39ADB5';
+        $datetime[$k]['constraint'] = 'businessHours';
+        $datetime[$k]['borderColor'] = '#FC6180';
+        $datetime[$k]['backgroundColor'] = '#FC6180';
         $datetime[$k]['textColor'] = '#fff';
         unset($datetime[$k]['event_name']);
         unset($datetime[$k]['date']);
+        unset($datetime[$k]['detail_event']);
+        unset($datetime[$k]['event_duration']);
+        unset($datetime[$k]['event_type']);
     }
     return json_encode($datetime);
 }

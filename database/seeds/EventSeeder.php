@@ -13,9 +13,9 @@ class EventSeeder extends Seeder
     {
         DB::table('events')->insert([
             'event_name' => 'Pernikahan Aki',
-            'date' => '2020-09-07 00:00:00',
-            'detail_event' => 'Pernikahan',
-            'event_duration' => null,
+            'event_start' => '2020-09-07 00:00:00',
+            'event_end' => '2020-09-07 00:01:00',
+            'event_details' => 'Pernikahan',
             'event_type' => 'One Time'
         ]);
     }

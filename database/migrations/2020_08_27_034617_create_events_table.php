@@ -16,9 +16,10 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('event_name');
-            $table->datetime('date');
-            $table->text('detail_event');
-            $table->integer('event_duration')->nullable();
+            $table->datetime('event_start');
+            $table->datetime('event_end');
+            $table->text('event_details');
+            $table->enum('event_status', ['Upcoming', 'Finished']);
             $table->enum('event_type', ['One Time', 'Recurring Monthly', 'Recurring Yearly']);
         });
     }

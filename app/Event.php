@@ -15,14 +15,19 @@ class Event extends Model
 
     protected $fillable = [
         'event_name',
-        'date',
-        'detail_event',
-        'event_duration',
+        'event_start',
+        'event_end',
+        'event_details',
         'event_type'
     ];
 
     public function employee_event()
     {
         return $this->hasMany('App\EmployeeEvent','event_id');
+    }
+
+    public function activity_logs()
+    {
+        return $this->hasMany('App\ActivityLogs','event_id');
     }
 }
