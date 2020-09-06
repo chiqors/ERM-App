@@ -3,8 +3,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <!-- <title>{{ config('app.name') }}</title> -->
-    <title>ERM</title>
+    <title>{{ config('app.name') }} | {{ $title }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,19 +22,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/prism/prism.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pcoded-horizontal.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
-
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/themify-icons/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/ion-icons/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/fullcalendar/css/fullcalendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/fullcalendar/css/fullcalendar.print.css') }}" media='print'>
 
+    @stack('styles')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/data-table/css/buttons.dataTables.min.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css') }}">
-    @yield('hstyles')
+    @livewireStyles
 
 </head>
 
@@ -127,12 +118,13 @@
     <script type="text/javascript" src="{{ asset('assets/pages/prism/custom-prism.js') }}"></script>
 
 
-    @yield('fscripts')
-
     <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
     <script src="{{ asset('assets/js/layouts/my-layout2.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
+
+    @livewireScripts
+    @stack('scripts')
 
 </body>
 

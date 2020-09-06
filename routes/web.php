@@ -13,5 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::livewire('/','beranda');
-Route::view('/login','livewire.login');
+// Passing parameters to the layout (Like native @extends('layouts.app', ['title' => 'foo']))
+Route::livewire('/', 'home.main')
+    ->layout('layouts.app', [
+        'title' => 'Home'
+    ]);
+
+Route::livewire('/login','login');
