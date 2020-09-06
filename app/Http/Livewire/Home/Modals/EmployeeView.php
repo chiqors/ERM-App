@@ -9,10 +9,10 @@ class EmployeeView extends Component
 {
     public $employee_view, $employee_id;
 
-    public function mount($id)
-    {
-        $this->employee_id = Employee::find($id);
-    }
+    // public function mount($id)
+    // {
+    //     $this->employee_id = Employee::find($id);
+    // }
 
     public function render()
     {

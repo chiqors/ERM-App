@@ -3,15 +3,16 @@
 namespace App\Http\Livewire\Home\Modals;
 
 use Livewire\Component;
+use App\Employee;
 
 class EmployeeEdit extends Component
 {
     public $employee_view, $employee_id;
 
-    public function mount($id)
-    {
-        $this->employee_id = Employee::find($id);
-    }
+    // public function mount($id)
+    // {
+    //     $this->employee_id = Employee::find($id);
+    // }
 
     public function render()
     {

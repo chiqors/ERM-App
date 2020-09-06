@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Home\Modals;
 
 use Livewire\Component;
+use App\Employee;
 
 class EmployeeFiles extends Component
 {
