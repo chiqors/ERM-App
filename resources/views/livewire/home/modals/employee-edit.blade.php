@@ -13,7 +13,6 @@
                     <label>Employee Name</label>
                     <input type="text" class="form-control form-control-sm">
                 </div>
-
                 <div class="md-form mb-3">
                     <label>Position</label>
                     <select class="form-control">

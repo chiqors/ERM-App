@@ -27,7 +27,7 @@
                     <select class="form-control">
                         <option>--Select Event--</option>
                         <option>One Time</option>
-                        <option>Recurring 2</option>
+                        <option>Recurring</option>
                     </select>
                 </div>
                 <div class="md-form mb-3">

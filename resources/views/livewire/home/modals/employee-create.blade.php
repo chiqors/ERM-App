@@ -30,7 +30,6 @@
                         <input id="join_date_employee" type="date" class="form-control form-control-sm"
                             wire:model="join_date">
                     </div>
-
                     <div class="md-form mb-3">
                         <label>End Date</label>
                         <input id="end_date_employee" type="date" class="form-control form-control-sm"
