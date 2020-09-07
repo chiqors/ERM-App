@@ -18,5 +18,7 @@ Route::livewire('/', 'home.main')
     ->layout('layouts.app', [
         'title' => 'Home'
     ]);
-
-Route::livewire('/login','login');
+Route::livewire('/login', 'login')
+    ->layout('layouts.auth', [
+        'title' => 'Login'
+    ]);
