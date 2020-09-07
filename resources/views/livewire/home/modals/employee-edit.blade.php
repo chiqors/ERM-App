@@ -23,7 +23,13 @@
                         <option>Programer</option>
                     </select>
                 </div>
-
+                <div class="md-form mb-3">
+                    <label>Status</label>
+                    <select class="form-control">
+                        <option>Active</option>
+                        <option>Inactive</option>
+                    </select>
+                </div>
                 <div class="md-form mb-3">
                     <label>Join Date</label>
                     <input type="date" class="form-control form-control-sm">
@@ -33,10 +39,13 @@
                     <input type="date" class="form-control form-control-sm">
                 </div>
                 <div class="md-form mb-3">
-                    <label>Contract</label>
-                    <input type="text" class="form-control form-control-sm" readonly>
+                        <label>Contract (Days) =&nbsp</label><label id="contract" class="font-weight-bold">0</label>
+                        <input type="hidden" class="form-control form-control-sm" wire:model="contract_duration" readonly>
                 </div>
-
+                <div class="md-form mb-3">
+                    <label>Additional Information</label>
+                    <textarea class="form-control form-control-sm"></textarea>
+                </div>
             </div>
             <div class="modal-footer d-flex justify-content-right">
                 <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
