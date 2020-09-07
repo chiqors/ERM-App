@@ -23,12 +23,24 @@
                     </select>
                 </div>
                 <div class="md-form mb-3">
+                    <label>Event Type</label>
+                    <select class="form-control">
+                        <option>--Select Event--</option>
+                        <option>One Time</option>
+                        <option>Recurring 2</option>
+                    </select>
+                </div>
+                <div class="md-form mb-3">
                     <label>Start Date</label>
-                    <input type="date" class="form-control ">
+                    <input type="datetime-local" class="form-control ">
                 </div>
                 <div class="md-form mb-3">
                     <label>End Date</label>
-                    <input type="date" class="form-control ">
+                    <input type="datetime-local" class="form-control ">
+                </div>
+                <div class="md-form mb-3">
+                    <label>Event Details</label>
+                    <textarea class="form-control form-control-sm"></textarea>
                 </div>
                 <div class="modal-footer d-flex justify-content-right">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
