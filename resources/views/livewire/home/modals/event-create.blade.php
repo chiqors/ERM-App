@@ -13,7 +13,6 @@
                     <label>Event Name</label>
                     <input type="text" class="form-control ">
                 </div>
-
                 <div class="md-form mb-3">
                     <label>Employee Name</label>
                     <select class="form-control">
@@ -23,34 +22,13 @@
                         <option>Employee 3</option>
                     </select>
                 </div>
-
                 <div class="md-form mb-3">
-                    <label>Date</label>
+                    <label>Start Date</label>
                     <input type="date" class="form-control ">
                 </div>
                 <div class="md-form mb-3">
-                    <label>Duration</label>
-                    <form class="form-inline">
-                        <input type="text" class="form-control form-control mb-2 mr-sm-3">
-                        <div class="form-check form-check-inline mb-2 mr-sm-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
-                                Day
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline mb-2 mr-sm-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                                Month
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline mb-2 mr-sm-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option3">
-                                Year
-                            </label>
-                        </div>
-                    </form>
+                    <label>End Date</label>
+                    <input type="date" class="form-control ">
                 </div>
                 <div class="modal-footer d-flex justify-content-right">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">

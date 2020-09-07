@@ -5,8 +5,10 @@
             <div class="card-header-right">
                 <!--Button Panggil Pop Up-->
                 <div class="text-center">
-                    <a href="" class="btn btn-default btn-sm icofont icofont-plus" data-toggle="modal"
-                        data-target="#modalAddEvent"></a>
+                    <a href="" class="btn btn-default btn-sm icofont icofont-edit"
+                        data-toggle="modal" data-target="#modalControllEvent"></a>
+                    <a href="" class="btn btn-default btn-sm icofont icofont-plus"
+                        data-toggle="modal" data-target="#modalAddEvent"></a>
                 </div>
             </div>
         </div>

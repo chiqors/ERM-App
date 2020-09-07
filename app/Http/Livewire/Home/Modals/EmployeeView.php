@@ -17,6 +17,6 @@ class EmployeeView extends Component
     public function render()
     {
         $this->employee_view = Employee::find($this->employee_id);
-        return view('livewire.home.modals.employee_view');
+        return view('livewire.home.modals.employee-view');
     }
 }

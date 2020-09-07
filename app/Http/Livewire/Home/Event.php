@@ -17,4 +17,4 @@ class Event extends Component
 
 // SELECT *
 // FROM events JOIN employee_events ON events.id = employee_events.event_id JOIN employees ON employee_events.employee_id = employees.id
-// WHERE MONTH(events.event_start) = MONTH(CURDATE())
+// WHERE CURDATE() + INTERVAL 1 DAY

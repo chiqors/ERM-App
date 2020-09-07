@@ -9,7 +9,7 @@ class EmployeeCreate extends Component
 {
     public function render()
     {
-        return view('livewire.home.modals.employee_create');
+        return view('livewire.home.modals.employee-create');
     }
 
     private function resetInputFields(){

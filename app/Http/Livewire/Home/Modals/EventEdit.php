@@ -3,12 +3,11 @@
 namespace App\Http\Livewire\Home\Modals;
 
 use Livewire\Component;
-use App\Employee;
 
-class EmployeeFiles extends Component
+class EventEdit extends Component
 {
     public function render()
     {
-        return view('livewire.home.modals.employee-files');
+        return view('livewire.home.modals.event-edit');
     }
 }

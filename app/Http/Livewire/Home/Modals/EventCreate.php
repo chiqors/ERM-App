@@ -11,7 +11,7 @@ class EventCreate extends Component
 
     public function render()
     {
-        return view('livewire.home.modals.event_create');
+        return view('livewire.home.modals.event-create');
     }
 
     private function resetInputFields(){

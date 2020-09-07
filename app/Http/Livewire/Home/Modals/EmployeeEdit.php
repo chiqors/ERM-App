@@ -17,7 +17,7 @@ class EmployeeEdit extends Component
     public function render()
     {
         $this->employee_view = Employee::find($this->employee_id);
-        return view('livewire.home.modals.employee_edit');
+        return view('livewire.home.modals.employee-edit');
     }
 
     private function resetInputFields(){

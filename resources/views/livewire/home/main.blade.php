@@ -48,6 +48,13 @@
 
         <!--Modal Pop Up Form create event-->
         @livewire('home.modals.event-create')
+
+        <!--Modal Pop Up Edit event-->
+        @livewire('home.modals.event-edit')
+
+        <!--Modal Pop Up Control event-->
+        @livewire('home.modals.event-control')
+
     </div>
 
     @push('scripts')

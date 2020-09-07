@@ -19,7 +19,6 @@ class CreateEventsTable extends Migration
             $table->datetime('event_start');
             $table->datetime('event_end');
             $table->text('event_details');
-            $table->enum('event_status', ['Upcoming', 'Finished']);
             $table->enum('event_type', ['One Time', 'Recurring Monthly', 'Recurring Yearly']);
         });
     }
