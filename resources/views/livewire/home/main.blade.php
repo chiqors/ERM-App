@@ -33,27 +33,9 @@
         </div>
     </div>
 
-    <div wire:ignore>
+    <div>
         <!--Modal Pop Up Form create employee-->
         @livewire('home.modals.employee-create')
-
-        <!--Modal Pop Up Form edit employee-->
-        @livewire('home.modals.employee-edit')
-
-        <!--Modal Pop Up Form view employee-->
-        @livewire('home.modals.employee-view')
-
-        <!--Modal Pop Up Form files employee-->
-        @livewire('home.modals.employee-files')
-
-        <!--Modal Pop Up Form create event-->
-        @livewire('home.modals.event-create')
-
-        <!--Modal Pop Up Edit event-->
-        @livewire('home.modals.event-edit')
-
-        <!--Modal Pop Up Control event-->
-        @livewire('home.modals.event-control')
 
     </div>
 
@@ -74,7 +56,8 @@
         <script type="text/javascript" src="{{ asset('bower_components/moment/js/moment.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bower_components/fullcalendar/js/fullcalendar.min.js') }}"></script>
         @stack("calender-script")
-        <script type="text/javascript">
+        @stack('employee-create-script')
+        {{-- <script type="text/javascript">
             function daysdifference(firstDate, secondDate) {
                 var startDay = new Date(firstDate);
                 var endDay = new Date(secondDate);
@@ -90,9 +73,10 @@
                     var end_date = $("#end_date_employee").val();
                     var contract_result = daysdifference(join_date, end_date);
                     $("#contract").text(contract_result);
+                    $("#input_contract_duration").val(contract_result);
                 });
             });
-        </script>
+        </script> --}}
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#EventList').DataTable();
