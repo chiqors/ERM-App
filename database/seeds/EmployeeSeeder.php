@@ -18,7 +18,7 @@ class EmployeeSeeder extends Seeder
             'password' => Hash::make('irawan'),
             'addition_information' => 'HRD',
             'position' => 'Human Resource Development',
-            'status' => 'Aktif',
+            'status' => 'Active',
             'join_date' => '2020-08-28 00:00:00',
             'end_date' => null,
             'contract_duration' => null
@@ -28,7 +28,7 @@ class EmployeeSeeder extends Seeder
             'password' => Hash::make('atlas'),
             'addition_information' => 'Programer',
             'position' => 'Programer',
-            'status' => 'Aktif',
+            'status' => 'Active',
             'join_date' => '2019-05-18 00:00:00',
             'end_date' => null,
             'contract_duration' => null
@@ -38,7 +38,7 @@ class EmployeeSeeder extends Seeder
             'password' => Hash::make('alex'),
             'addition_information' => 'CFO',
             'position' => 'Chief Financial Officer',
-            'status' => 'Aktif',
+            'status' => 'Active',
             'join_date' => '2020-02-22 00:00:00',
             'end_date' => null,
             'contract_duration' => null
@@ -48,7 +48,7 @@ class EmployeeSeeder extends Seeder
             'password' => Hash::make('yudhi'),
             'addition_information' => 'CMO',
             'position' => 'Chief Marketing Officer',
-            'status' => 'Aktif',
+            'status' => 'Active',
             'join_date' => '2020-01-15 00:00:00',
             'end_date' => null,
             'contract_duration' => null
@@ -58,7 +58,7 @@ class EmployeeSeeder extends Seeder
             'password' => Hash::make('egaks'),
             'addition_information' => 'COO',
             'position' => 'Chief Operating Officer',
-            'status' => 'Aktif',
+            'status' => 'Active',
             'join_date' => '2020-02-11 00:00:00',
             'end_date' => null,
             'contract_duration' => null

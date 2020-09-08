@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pcoded-horizontal.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/waves/css/waves.min.css') }}" media="all">
 
     @stack('styles')
 
@@ -96,7 +97,6 @@
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <!-- CONTENT -->
-                    @include('includes.messages')
                     @yield('content')
                 </div>
             </div>
@@ -111,7 +111,7 @@
 
     <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}">
     </script>
-
+    <script type="text/javascript" src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 
