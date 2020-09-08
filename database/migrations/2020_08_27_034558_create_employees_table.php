@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('password')->nullable();
             $table->string('addition_information')->nullable();
             $table->string('position');
-            $table->enum('status', ['Aktif','Tidak Aktif']);
+            $table->enum('status', ['Active','Inactive']);
             $table->date('join_date');
             $table->date('end_date')->nullable();
             $table->integer('contract_duration')->nullable();
