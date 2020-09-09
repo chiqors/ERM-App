@@ -35,4 +35,12 @@ class Event extends Model
     {
         return $this->hasMany('App\Models\ActivityLogs','event_id');
     }
+
+    // DataTable
+    public static function search($query)
+    {
+        return empty($query)
+            ? static::query()
+            : static::where('full_name', 'like', '%'.$query.'%');
+    }
 }

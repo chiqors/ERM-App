@@ -37,7 +37,7 @@
 
     @push('calender-script')
         <script type="text/javascript">
-            $(document).ready(function () {
+            window.livewire.on('calenderRender', () => {
                 $('#calender').fullCalendar({
                     header: {
                         left: 'prev,next today',

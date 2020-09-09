@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\EmployeeEvent;
+use App\Models\EmployeeEvent;
 
 class EmployeeEventSeeder extends Seeder
 {
@@ -26,7 +26,7 @@ class EmployeeEventSeeder extends Seeder
             'event_id' 		=> 5
         ], [
             'employee_id' 	=> 5,
-            'event_id' 		=> 5
+            'event_id' 		=> 3
         ], [
             'employee_id' 	=> 6,
             'event_id' 		=> 8

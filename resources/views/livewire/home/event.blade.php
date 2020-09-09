@@ -38,7 +38,12 @@
                                     @if(!$events->isEmpty())
                                     @foreach ($events as $ev)
                                     <tr>
-                                        <td>none</td>
+                                        <td>
+                                            @foreach($ev->employee as $emp)
+                                            {{ $loop->first ? '' : '--' }}
+                                            <span class="nice">{{ $emp->full_name }}</span>
+                                            @endforeach
+                                        </td>
                                         <td>{{ $ev->event_name }}</td>
                                         <td>{{ $ev->event_type }}</td>
                                         <td>{{ $ev->event_start }} - {{ $ev->event_end }}</td>
