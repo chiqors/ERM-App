@@ -4,30 +4,71 @@
             <div class="card-header">
                 <h5>Event Today</h5>
             </div>
-            <div class="card-block table-border-style">
-                <div class="dataTables">
-                    <table id="EventListToday" class="table table-striped table-bordered nowrap">
-                        <thead >
-                            <tr role="row" style="height: 0px;">
-                                    <th>Full Name</th>
-                                    <th>Event Name</th>
-                                    <th>Event Type</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td><a href="" class="icofont icofont-check mr-3"></a>
-                                    <a href="" class="icofont icofont-close mr-3"></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="card-block">
+                @include('includes.messages')
+
+                <div class="row">
+                    <div class="col">
+                        <div class="table-responsive dt-responsive" style="border: 1px solid #dee2e6;">
+                            <table class="table table-striped table-bordered nowrap">
+                                <thead>
+                                    <tr>
+                                        <th><a wire:click.prevent="sortBy('full_name')" role="button" href="#">
+                                            Full Name
+                                            @include('includes.dt-sorticon', ['field' => 'full_name'])
+                                        </a></th>
+                                        <th><a wire:click.prevent="sortBy('event_name')" role="button" href="#">
+                                            Event Name
+                                            @include('includes.dt-sorticon', ['field' => 'event_name'])
+                                        </a></th>
+                                        <th><a wire:click.prevent="sortBy('event_type')" role="button" href="#">
+                                            Event Type
+                                            @include('includes.dt-sorticon', ['field' => 'event_type'])
+                                        </a></th>
+                                        <th><a wire:click.prevent="sortBy('event_start')" role="button" href="#">
+                                            Event Date
+                                            @include('includes.dt-sorticon', ['field' => 'event_start'])
+                                        </a></th>
+                                        <th width="70">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(!$events->isEmpty())
+                                    @foreach ($events as $ev)
+                                    <tr>
+                                        <td>none</td>
+                                        <td>{{ $ev->event_name }}</td>
+                                        <td>{{ $ev->event_type }}</td>
+                                        <td>{{ $ev->event_start }} - {{ $ev->event_end }}</td>
+                                        <td>
+                                            <a style="cursor: pointer" wire:click="complete({{ $ev->id }},'none',true)" class="icofont icofont-check mr-3"></a>
+                                            <a style="cursor: pointer" wire:click="complete({{ $ev->id }},'none',false)" class="icofont icofont-close mr-3"></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @else
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            No data available
+                                        </td>
+                                    </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ $events->links() }}
+                    </div>
+
+                    <div class="col text-right text-muted">
+                        Showing {{ $events->firstItem() }} to {{ $events->lastItem() }} out of {{ $events->total() }} results
+                    </div>
                 </div>
             </div>
         </div>

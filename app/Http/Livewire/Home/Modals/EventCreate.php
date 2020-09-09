@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Home\Modals;
 
 use Livewire\Component;
-use App\Events;
+use App\Models\Events;
 
 class EventCreate extends Component
 {

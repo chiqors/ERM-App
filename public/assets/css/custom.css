@@ -3,3 +3,28 @@
     font-weight: 900;
     content: "\f061";
 }
+
+.form-bg-purle {
+    background-color: #6D4786;
+    border-color: #6D4786;
+    color: #fff
+}
+
+.form-bg-purle:focus {
+    background-color: #6D4786;
+    border-color: #6D4786;
+    color: #fff
+}
+
+.form-bg-purle::-moz-placeholder {
+    color: #fff;
+    opacity: 1
+}
+
+.form-bg-purle:-ms-input-placeholder {
+    color: #fff
+}
+
+.form-bg-purle::-webkit-input-placeholder {
+    color: #fff
+}

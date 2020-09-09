@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class ActivityLogs extends Model
     // Primary Key
     public $primary_key = 'id';
     // Timestamps
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'event_id',
@@ -21,6 +21,6 @@ class ActivityLogs extends Model
 
     public function event()
     {
-        return $this->belongsTo('App\Event','event_id');
+        return $this->belongsTo('App\Models\Event','event_id');
     }
 }

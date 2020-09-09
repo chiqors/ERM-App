@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,11 +27,19 @@ class Employee extends Model
 
     public function employee_event()
     {
-        return $this->hasMany('App\EmployeeEvent','employee_id');
+        return $this->hasMany('App\Models\EmployeeEvent','employee_id');
     }
 
     public function employee_files()
     {
-        return $this->hasOne('App\EmployeeFiles','employee_id');
+        return $this->hasOne('App\Models\EmployeeFiles','employee_id');
+    }
+
+    // DataTable
+    public static function search($query)
+    {
+        return empty($query)
+            ? static::query()
+            : static::where('full_name', 'like', '%'.$query.'%');
     }
 }

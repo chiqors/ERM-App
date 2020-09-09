@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Home;
 
 use Livewire\Component;
-use App\Event;
+use App\Models\Event;
 
 class Calender extends Component
 {
