@@ -11,7 +11,7 @@
                     <input type="text" class="form-control form-control-sm" wire:model="full_name">
                     @error('full_name') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
-                
+
                 <div class="md-form row mb-3">
                     <div class="col-lg-6">
                         <label>Position</label>

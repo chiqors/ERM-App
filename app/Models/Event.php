@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,11 +23,16 @@ class Event extends Model
 
     public function employee_event()
     {
-        return $this->hasMany('App\EmployeeEvent','event_id');
+        return $this->hasMany('App\Models\EmployeeEvent','event_id');
+    }
+
+    public function employee()
+    {
+        return $this->belongsToMany('App\Models\Employee');
     }
 
     public function activity_logs()
     {
-        return $this->hasMany('App\ActivityLogs','event_id');
+        return $this->hasMany('App\Models\ActivityLogs','event_id');
     }
 }

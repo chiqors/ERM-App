@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +22,6 @@ class EmployeeFiles extends Model
 
     public function employee()
     {
-        return $this->belongsTo('App\Employee','employee_id');
+        return $this->belongsTo('App\Models\Employee','employee_id');
     }
 }

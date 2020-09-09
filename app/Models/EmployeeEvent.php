@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,11 +20,11 @@ class EmployeeEvent extends Model
 
     public function employee()
     {
-        return $this->belongsTo('App\Employee','employee_id');
+        return $this->belongsTo('App\Models\Employee','employee_id');
     }
 
     public function event()
     {
-        return $this->belongsTo('App\Event','event_id');
+        return $this->belongsTo('App\Models\Event','event_id');
     }
 }

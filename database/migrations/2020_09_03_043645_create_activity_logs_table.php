@@ -18,7 +18,6 @@ class CreateActivityLogsTable extends Migration
             $table->integer('event_id');
             $table->enum('status', ['Accepted', 'Rejected']);
             $table->datetime('time');
-            $table->timestamps();
         });
     }
 
