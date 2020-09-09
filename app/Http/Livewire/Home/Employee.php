@@ -149,6 +149,24 @@ class Employee extends Component
         session()->flash('message', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been updated.');
         $this->resetInputFields();
 
+        $this->emit('employeeRefresh'); // Refresh data from DB
+        $this->emit('employeeUpdate'); // Close model to using to jquery
+        session()->flash('message', 'Employee #'.$this->employee_id.' has been updated.');
+        $this->resetInputFields();
+
+    }
+
+    public function show($emp_id)
+    {
+        $emp = Emp::find($emp_id);
+        $this->employee_id = $emp->id;
+        $this->full_name = $emp->full_name;
+        $this->addition_information = $emp->addition_information;
+        $this->position = $emp->position;
+        $this->status = $emp->status;
+        $this->join_date = $emp->join_date;
+        $this->end_date = $emp->end_date;
+        $this->contract_duration = $emp->contract_duration;
     }
 
     public function show($emp_id)

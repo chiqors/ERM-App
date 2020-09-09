@@ -16,60 +16,32 @@
                                 <table id="EventList" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Status</th>
+                                            <th>Employee Name</th>
+                                            <th>Event Name</th>
+                                            <th>Event Type</th>
+                                            <th>Event Start</th>
+                                            <th>Event End</th>
+                                            <th>Event Details</th>
                                             <th width="50">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if(@$eventcontrol)
+                                        @foreach($eventcontrol as $evn)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
+                                            <td>{{ $evn->employee->full_name }}</td>
+                                            <td>{{ $evn->event->event_name }}</td>
+                                            <td>{{ $evn->event->event_type }}</td>
+                                            <td>{{ $evn->event->event_start }}</td>
+                                            <td>{{ $evn->event->event_end }}</td>
+                                            <td>{{ $evn->event->event_details }}</td>
                                             <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
                                                     data-target="#modalEditEvent" data-dismiss="modal"></a>
                                                 <a href="" class="icofont icofont-bin mr-3"></a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
-                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
-                                                <a href="" class="icofont icofont-bin mr-3"></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
-                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
-                                                <a href="" class="icofont icofont-bin mr-3"></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
-                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
-                                                <a href="" class="icofont icofont-bin mr-3"></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
-                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
-                                                <a href="" class="icofont icofont-bin mr-3"></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td><a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
-                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
-                                                <a href="" class="icofont icofont-bin mr-3"></a>
-                                            </td>
-                                        </tr>
+                                        @endforeach
+                                        @endif
                                         </tfoot>
                                 </table>
                             </div>
