@@ -1,7 +1,5 @@
 <?php
 
-use App\ActivityLogs;
-use App\EmployeeEvent;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

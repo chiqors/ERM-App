@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Home;
 
 use Livewire\Component;
-use Livewire\WithPagination;
+use App\Traits\Livewire\WithPaginationExtended;
 
 use App\Models\ActivityLogs;
 use App\Models\Event as EV;
@@ -11,9 +11,16 @@ use App\Models\Event as EV;
 class Event extends Component
 {
     // Initialize Datatable
-    use WithPagination;
+    use WithPaginationExtended;
+    protected $paginationQueryStringEnabled = false;
     public $perPage, $sortField, $sortAsc;
     // --------------------
+
+    // Initialize listener
+    protected $listeners = [
+        'eventRefresh' => 'eventRefreshListener'
+    ];
+    // -------------------
 
     // Constructor On Load Server-side (Initialization)
     public function mount()
@@ -23,13 +30,14 @@ class Event extends Component
         $this->sortAsc = true;
     }
 
+    // Rendering on each function fired Client-side
     public function render()
     {
         $event_id_log = ActivityLogs::pluck('event_id')->all();
+        $query = EV::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
         return view('livewire.home.event', [
-            'events' => EV::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->whereNotIn('id', $event_id_log)
-                ->paginate($this->perPage)
+            'events' => $query
         ]);
     }
 
@@ -46,6 +54,15 @@ class Event extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    // -----------------
+    // LISTENER FUNCTION
+    // -----------------
+
+    public function eventRefreshListener()
+    {
+
     }
 
     // -----------------
