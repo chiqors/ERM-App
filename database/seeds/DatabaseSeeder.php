@@ -1,5 +1,7 @@
 <?php
 
+use App\ActivityLogs;
+use App\EmployeeEvent;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(EmployeeSeeder::class);
         $this->call(EventSeeder::class);
+        $this->call(EmployeeEventSeeder::class);
+        $this->call(ActivityLogsSeeder::class);
     }
 }
