@@ -33,66 +33,19 @@
         </div>
     </div>
 
-    <div wire:ignore>
-        <!--Modal Pop Up Form create employee-->
-        @livewire('home.modals.employee-create')
-
-        <!--Modal Pop Up Form edit employee-->
-        @livewire('home.modals.employee-edit')
-
-        <!--Modal Pop Up Form view employee-->
-        @livewire('home.modals.employee-view')
-
-        <!--Modal Pop Up Form files employee-->
-        @livewire('home.modals.employee-files')
-
-        <!--Modal Pop Up Form create event-->
-        @livewire('home.modals.event-create')
-
-        <!--Modal Pop Up Edit event-->
-        @livewire('home.modals.event-edit')
-
-        <!--Modal Pop Up Control event-->
-        @livewire('home.modals.event-control')
-
-    </div>
-
     @push('scripts')
         <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/pages/data-table/js/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/pages/data-table/js/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/pages/data-table/js/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}">
-        </script>
+        <script src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('assets/pages/data-table/js/data-table-custom.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/classie.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bower_components/moment/js/moment.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bower_components/fullcalendar/js/fullcalendar.min.js') }}"></script>
         @stack("calender-script")
-        <script type="text/javascript">
-            function daysdifference(firstDate, secondDate) {
-                var startDay = new Date(firstDate);
-                var endDay = new Date(secondDate);
-
-                var millisBetween = startDay.getTime() - endDay.getTime();
-                var days = millisBetween / (1000 * 3600 * 24);
-
-                return Math.round(Math.abs(days));
-            }
-            $(function () {
-                $("#end_date_employee").blur(function () {
-                    var join_date = $("#join_date_employee").val();
-                    var end_date = $("#end_date_employee").val();
-                    var contract_result = daysdifference(join_date, end_date);
-                    $("#contract").text(contract_result);
-                });
-            });
-        </script>
+        @stack('employee-create-script')
+        @stack('employee-delete-script')
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#EventList').DataTable();

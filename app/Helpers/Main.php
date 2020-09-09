@@ -18,3 +18,8 @@ function forCalendar($datetime){
     }
     return json_encode($datetime);
 }
+
+function daysDifference($firstDate, $secondDate) {
+    $datediff = strtotime($secondDate) - strtotime($firstDate);
+    return round($datediff / (60 * 60 * 24));
+}
