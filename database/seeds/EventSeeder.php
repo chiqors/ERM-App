@@ -34,8 +34,8 @@ class EventSeeder extends Seeder
             'event_name' 	=> 'Cuti',
             'event_start' 	=> '2020-09-07 00:00:00',
             'event_end' 	=> '2020-09-07 00:01:00',
-            'event_details' 	=> 'Cuti Bulanan',
-            'event_type' 	=> 'Recurring Monthly'
+            'event_details' 	=> 'Cuti Tahunan',
+            'event_type' 	=> 'Recurring Yearly'
         ], [
             'event_name' 	=> 'Cuti',
             'event_start' 	=> '2020-09-07 00:00:00',

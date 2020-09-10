@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>
                                             @foreach($ev->employee as $emp)
-                                            {{ $loop->first ? '' : '--' }}
+                                            {!! $loop->first ? '' : '-' !!}
                                             <span class="nice">{{ $emp->full_name }}</span>
                                             @endforeach
                                         </td>

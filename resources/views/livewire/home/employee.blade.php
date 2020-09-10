@@ -28,7 +28,7 @@
 
             <div class="col-12 col-lg-6">
                 <div class="input-group">
-                    <input wire:model="search" type="text" class="form-control" placeholder="Full Name">
+                    <input wire:model="search" type="text" class="form-control" placeholder="Full Name / Position">
                     <span class="input-group-append">
                         <label class="input-group-text"><i class="icofont icofont-ui-search"></i></label>
                     </span>
@@ -112,5 +112,11 @@
     @include('livewire.home.modals.employee-show')
     <!--Modal Pop Up Confirm delete employee-->
     @include('livewire.home.modals.employee-delete')
+
+    @push('employee-script')
+        @stack('employee-create-script')
+        @stack('employee-update-script')
+        @stack('employee-delete-script')
+    @endpush
 </div>
 

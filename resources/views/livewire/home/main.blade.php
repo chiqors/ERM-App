@@ -17,7 +17,7 @@
                         @livewire('home.calender')
                     </div>
                     <div class="col-xl-6 col-12">
-                        @livewire('home.event')
+                        @livewire('home.event-current')
                         @livewire('home.card')
                     </div>
                 </div>
@@ -35,9 +35,7 @@
         <script type="text/javascript" src="{{ asset('bower_components/moment/js/moment.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bower_components/fullcalendar/js/fullcalendar.min.js') }}"></script>
         @stack("calender-script")
-        @stack('employee-create-script')
-        @stack('employee-update-script')
-        @stack('employee-delete-script')
+        @stack("employee-script")
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#EventList').DataTable();

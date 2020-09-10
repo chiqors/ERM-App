@@ -6,13 +6,14 @@
                 <!--Button Panggil Pop Up-->
                 <div class="text-center">
                     <a href="" class="btn btn-default btn-sm icofont icofont-edit"
-                        data-toggle="modal" data-target="#modalControllEvent"></a>
+                        data-toggle="modal" data-target="#modalControlEvent"></a>
                     <a href="" class="btn btn-default btn-sm icofont icofont-plus"
-                        data-toggle="modal" data-target="#modalAddEvent"></a>
+                        data-toggle="modal" data-target="#modalCreateEvent"></a>
                 </div>
             </div>
         </div>
         <div class="card-block">
+            @include('includes.messages')
             <div class="row">
                 <div class="col-xl-12 col-md-12">
                     <div id='calender'></div>
@@ -35,27 +36,34 @@
         </div>
     </div>
 
+    <!--Modal Pop Up Form control events-->
+    @include('livewire.home.modals.event-control')
+
+    <!--Modal Pop Up Form create events-->
+    @include('livewire.home.modals.event-create')
+
+    @stack('event-control-modals-includes')
+
     @push('calender-script')
         <script type="text/javascript">
-            window.livewire.on('calenderRender', () => {
-                $('#calender').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,listMonth'
-                    },
-                    navLinks: true,
-                    businessHours: false,
-                    editable: false,
-                    droppable: false,
-                    drop: function () {
-                        if ($('#checkbox2').is(':checked')) {
-                            $(this).remove();
-                        }
-                    },
-                    events: {!! $calendar !!}
-                });
+            $('#calender').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,listMonth'
+                },
+                navLinks: true,
+                businessHours: false,
+                editable: false,
+                droppable: false,
+                drop: function () {
+                    if ($('#checkbox2').is(':checked')) {
+                        $(this).remove();
+                    }
+                },
+                events: {!! $calendar !!}
             });
         </script>
+        @stack('event-create-script')
     @endpush
 </div>

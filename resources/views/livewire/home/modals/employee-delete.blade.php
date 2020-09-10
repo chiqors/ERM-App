@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Delete Emloyee</h5>
             </div>
             <div class="modal-body"> Do you want to delete <span class="font-weight-bold">{{ $full_name }}</span>?</div>
             <div class="modal-footer">
