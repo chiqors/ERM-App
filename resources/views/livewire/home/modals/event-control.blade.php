@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <div wire:ignore.self class="modal fade" id="modalControlEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-=======
-<div wire:ignore.self class="modal fade" id="modalControllEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
->>>>>>> develop
     aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
