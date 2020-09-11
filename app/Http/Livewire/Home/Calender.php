@@ -32,6 +32,11 @@ class Calender extends Component
     // Constructor On Load Server-side (Initialization)
     public function mount()
     {
+        $this->perPage = 5;
+        $this->sortField = 'event_name';
+        $this->sortAsc = true;
+        $this->search = '';
+
         @$calendar_render = forCalendar(Event::all()->toArray());
         $this->employees = Employee::all();
         $this->calendar = $calendar_render;
@@ -215,4 +220,5 @@ class Calender extends Component
         session()->flash('success', 'Event <span class="font-weight-bold">'.$this->event_name.'</span> has been deleted.');
         $this->resetInputFields();
     }
+
 }
