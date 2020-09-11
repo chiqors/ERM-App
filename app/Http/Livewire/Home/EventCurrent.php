@@ -4,11 +4,12 @@ namespace App\Http\Livewire\Home;
 
 use Livewire\Component;
 use App\Traits\Livewire\WithPaginationExtended;
+use Carbon\Carbon;
 
 use App\Models\ActivityLogs;
-use App\Models\Event as EV;
+use App\Models\Event;
 
-class Event extends Component
+class EventCurrent extends Component
 {
     // Initialize Datatable
     use WithPaginationExtended;
@@ -18,7 +19,7 @@ class Event extends Component
 
     // Initialize listener
     protected $listeners = [
-        'eventRefresh' => 'eventRefreshListener'
+        'eventRefresh' => 'render'
     ];
     // -------------------
 
@@ -34,9 +35,10 @@ class Event extends Component
     public function render()
     {
         $event_id_log = ActivityLogs::pluck('event_id')->all();
-        $query = EV::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+        $query = Event::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->where('event_start', '<=', Carbon::today())
                     ->paginate($this->perPage);
-        return view('livewire.home.event', [
+        return view('livewire.home.event-current', [
             'events' => $query
         ]);
     }

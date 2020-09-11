@@ -22,7 +22,6 @@ class Employee extends Component
     // Initialize listener
     protected $listeners = [
         'contractCalc' => 'contractCalculate',
-        'employeeRefresh' => 'employeeRefreshListener'
     ];
     // -------------------
 
@@ -45,7 +44,8 @@ class Employee extends Component
         ]);
     }
 
-    private function resetInputFields(){
+    private function resetInputFields()
+    {
         $this->employee_id = '';
         $this->full_name = '';
         $this->addition_information = '';
@@ -86,7 +86,6 @@ class Employee extends Component
 
     public function cancel()
     {
-        $this->updateMode = false;
         $this->resetInputFields();
     }
 
@@ -115,7 +114,6 @@ class Employee extends Component
 
     public function edit($emp_id)
     {
-        $this->updateMode = true;
         $emp = Emp::find($emp_id);
         $this->employee_id = $emp->id;
         $this->full_name = $emp->full_name;

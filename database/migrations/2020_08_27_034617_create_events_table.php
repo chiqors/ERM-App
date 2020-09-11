@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('event_name');
             $table->datetime('event_start');
             $table->datetime('event_end');
-            $table->text('event_details');
+            $table->text('event_details')->nullable();
             $table->enum('event_type', ['One Time', 'Recurring Monthly', 'Recurring Yearly']);
         });
     }

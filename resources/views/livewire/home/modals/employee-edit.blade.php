@@ -7,21 +7,20 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form mb-3">
-                    <label>Employee Name</label>
+                    <label>Employee Name <span class="text-c-red">*</span></label>
                     <input type="text" class="form-control form-control-sm" wire:model="full_name">
                     @error('full_name') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
 
                 <div class="md-form row mb-3">
                     <div class="col-lg-6">
-                        <label>Position</label>
+                        <label>Position <span class="text-c-red">*</span></label>
                         <input type="text" class="form-control form-control-sm" wire:model="position">
                         @error('position') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                     <div class="col-lg-6">
-                        <label>Employee Status</label>
+                        <label>Employee Status <span class="text-c-red">*</span></label>
                         <select class="form-control form-control-sm" wire:model="status">
-                            <option value="">-- SELECT STATUS --</option>
                             <option value="Active">Aktif</option>
                             <option value="Inactive">Tidak Aktif</option>
                         </select>
@@ -31,7 +30,7 @@
 
                 <div class="md-form row mb-3">
                     <div class="col-lg-10">
-                        <label>Join Date - End Date(Blank, if permanent)<span class="text-c-red">*</span></label>
+                        <label>Join Date - End Date(Blank, if permanent) <span class="text-c-red">*</span></label>
                         <div class="row">
                             <div class="col-lg-6">
                                 <input id="join_date_employee" type="date" class="form-control form-control-sm"
@@ -44,7 +43,7 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <label>Long Contract?<span class="text-c-red">*</span></label>
+                        <label>Long Contract? <span class="text-c-red">*</span></label>
                         <button class="btn btn-sm btn-outline-secondary" type="button" wire:click="$emit('contractCalc')">Calculate</button>
                         <input type="hidden" class="form-control" value="Aktif" wire:model="status">
                     </div>

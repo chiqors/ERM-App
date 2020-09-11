@@ -41,6 +41,6 @@ class Event extends Model
     {
         return empty($query)
             ? static::query()
-            : static::where('full_name', 'like', '%'.$query.'%');
+            : static::where('event_name', 'like', '%'.$query.'%');
     }
 }
