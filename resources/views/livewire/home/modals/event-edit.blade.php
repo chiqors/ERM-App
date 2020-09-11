@@ -1,13 +1,9 @@
-<div class="modal fade" id="modalEditEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="modalEditEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Edit Event</h4>
-                <button type="button" class="close" data-toggle="modal" data-target="#modalControllEvent"
-                    data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body mx-3">
                 <div class="modal-body mx-3">
@@ -23,7 +19,7 @@
                         @for($f = 0; $f < $employee_count; $f++)
                         <select class="form-control" wire:model="employee_ids.{{ $f }}">
                             @foreach($employees as $emp)
-                            <option value="{{ $emp->id }}" {{ ($employee_ids[$f]==$emp->id) ? 'selected' : '' }}>{{ $emp->full_name }}</option>
+                            <option value="{{ $emp->id }}" {{ (@$employee_ids[$f]==$emp->id) ? 'selected' : '' }}>{{ $emp->full_name }}</option>
                             @endforeach
                         </select>
                         @endfor
@@ -64,11 +60,19 @@
                         @error('event_details') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                     <div class="modal-footer d-flex justify-content-right">
-                        <button wire:click.prevent="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button wire:click.prevent="store" class="btn btn-primary waves-effect waves-light">Submit</button>
+                        <button wire:click.prevent="cancel" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#modalControlEvent">Cancel</button>
+                        <button wire:click.prevent="update" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @push('event-edit-script')
+    <script type="text/javascript">
+        window.livewire.on('eventUpdate', () => {
+            $('#modalEditEvent').modal('hide');
+            $('#modalControlEvent').modal('show');
+        });
+    </script>
+    @endpush
 </div>

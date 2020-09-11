@@ -33,3 +33,19 @@ function daysDifference($firstDate, $secondDate) {
     $datediff = strtotime($secondDate) - strtotime($firstDate);
     return round($datediff / (60 * 60 * 24));
 }
+
+function get_x_months_to_the_future( $base_time = null, $months = 1 )
+{
+    if (is_null($base_time))
+        $base_time = time();
+
+    $x_months_to_the_future    = strtotime( "+" . $months . " months", $base_time );
+
+    $month_before              = (int) date( "m", $base_time ) + 12 * (int) date( "Y", $base_time );
+    $month_after               = (int) date( "m", $x_months_to_the_future ) + 12 * (int) date( "Y", $x_months_to_the_future );
+
+    if ($month_after > $months + $month_before)
+        $x_months_to_the_future = strtotime( date("Ym01His", $x_months_to_the_future) . " -1 day" );
+
+    return $x_months_to_the_future;
+}

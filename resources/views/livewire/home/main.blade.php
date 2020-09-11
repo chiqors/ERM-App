@@ -37,17 +37,13 @@
         @stack("calender-script")
         @stack("employee-script")
         <script type="text/javascript">
-            $(document).ready(function () {
-                $('#EventList').DataTable();
-                $('#EventListToday').DataTable( {
-                    "searching": false,
-                    "ordering": false,
-                    "scrollY": 200,
-                    "scrollX": true,
-                    "paging": false,
-                    "scrollCollapse": true,
-                    "fixedColumns": true
-                });
+            // Hack to enable multiple modals by making sure the .modal-open class
+            // is set to the <body> when there is at least one modal open left
+            $('body').on('hidden.bs.modal', function () {
+                if($('.modal.show').length > 0)
+                {
+                    $('body').addClass('modal-open');
+                }
             });
         </script>
     @endpush

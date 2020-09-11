@@ -15,8 +15,13 @@
         <div class="card-block">
             @include('includes.messages')
             <div class="row">
+                <div class="col">
+                    <button class="btn btn-sm btn-primary" wire:click="$emit('calenderRender')"><i class="icofont icofont-refresh"></i>Refresh</button>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xl-12 col-md-12">
-                    <div id='calender'></div>
+                    <div wire:ignore id='calender'></div>
                 </div>
             </div>
         </div>
@@ -42,28 +47,35 @@
     <!--Modal Pop Up Form create events-->
     @include('livewire.home.modals.event-create')
 
-    @stack('event-control-modals-includes')
+    <!--Modal Pop Up Form edit events-->
+    @include('livewire.home.modals.event-edit')
+
+    <!--Modal Pop Up Form view/show employee-->
+    @include('livewire.home.modals.event-show')
+
+    <!--Modal Pop Up Confirm delete events-->
+    @include('livewire.home.modals.event-delete')
 
     @push('calender-script')
         <script type="text/javascript">
-            $('#calender').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,listMonth'
-                },
-                navLinks: true,
-                businessHours: false,
-                editable: false,
-                droppable: false,
-                drop: function () {
-                    if ($('#checkbox2').is(':checked')) {
-                        $(this).remove();
-                    }
-                },
-                events: {!! $calendar !!}
+            var calender = {!! $calendar !!};
+            window.livewire.on('calenderRender', () => {
+                $('#calender').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,listMonth'
+                    },
+                    navLinks: true,
+                    businessHours: false,
+                    editable: false,
+                    droppable: false,
+                    events: calender
+                });
             });
         </script>
         @stack('event-create-script')
+        @stack('event-edit-script')
+        @stack('event-delete-script')
     @endpush
 </div>

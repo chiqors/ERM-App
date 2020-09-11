@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body"> Do you want to delete <span class="font-weight-bold">{{ $event_name }}</span>?</div>
             <div class="modal-footer">
-                <button wire:click.prevent="cancel" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">Cancel</button>
+                <button wire:click.prevent="cancel" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" data-toggle="modal" data-target="#modalControlEvent">Cancel</button>
                 <button wire:click.prevent="delete" class="btn btn-danger waves-effect waves-light">Destroy</button>
             </div>
         </div>
@@ -16,6 +16,7 @@
     <script type="text/javascript">
         window.livewire.on('eventDelete', () => {
             $('#modalDeleteEvent').modal('hide');
+            $('#modalControlEvent').modal('show');
         });
     </script>
     @endpush
