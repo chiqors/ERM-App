@@ -3,12 +3,18 @@
 namespace App\Http\Livewire\Home;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Traits\Livewire\WithPaginationExtended;
 
 use App\Models\Employee as Emp;
+use App\Models\EmployeeFiles;
 
 class Employee extends Component
 {
+    // Initialize UploadFiles
+    use WithFileUploads;
+    // ----------------------
+
     // Initialize Datatable
     use WithPaginationExtended;
     protected $paginationQueryStringEnabled = false;
@@ -17,6 +23,7 @@ class Employee extends Component
 
     // Initialize model of employee with variables
     public $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration;
+    public $dir_name, $ktp, $cv, $certificate;
     // -------------------------------------------
 
     // Initialize listener
@@ -32,6 +39,7 @@ class Employee extends Component
         $this->sortField = 'full_name';
         $this->sortAsc = true;
         $this->search = '';
+        $this->iteration = 0;
     }
 
     // Rendering on each function fired Client-side
@@ -44,6 +52,35 @@ class Employee extends Component
         ]);
     }
 
+    // -----------------
+    // UPDATED LIFECYCLE
+    // -----------------
+
+    public function updatedKtp($value)
+    {
+        $this->validate([
+            'ktp' => 'mimes:pdf|max:2048',
+        ]);
+    }
+
+    public function updatedCv($value)
+    {
+        $this->validate([
+            'cv' => 'mimes:pdf|max:2048'
+        ]);
+    }
+
+    public function updatedCertificate($value)
+    {
+        $this->validate([
+            'certificate' => 'mimes:pdf|max:2048'
+        ]);
+    }
+
+    // ---------------
+    // RESET FUNCTIONS
+    // ---------------
+
     private function resetInputFields()
     {
         $this->employee_id = '';
@@ -54,6 +91,9 @@ class Employee extends Component
         $this->join_date = '';
         $this->end_date = '';
         $this->contract_duration = '';
+        $this->ktp = '';
+        $this->cv = '';
+        $this->certificate = '';
     }
 
     // ------------------
@@ -94,7 +134,7 @@ class Employee extends Component
         $this->validate([
             'full_name' => 'required',
             'position' => 'required',
-            'join_date' => 'required',
+            'join_date' => 'required'
         ]);
 
         $post = new Emp();
@@ -106,6 +146,29 @@ class Employee extends Component
         $post->end_date = date('Y-m-d', strtotime($this->end_date));
         $post->contract_duration = $this->contract_duration;
         $post->save();
+
+        // Upload File
+
+        $post_last_id = $post->id;
+        $dirName = $post_last_id.'-'.$post->full_name;
+        $driveDirName = createGetDriveFolder($dirName);
+
+        $post_files = new EmployeeFiles;
+        $post_files->employee_id = $post->id;
+        $post_files->dir_name = $driveDirName;
+        if (!empty($this->ktp)) {
+            $this->ktp->storeAs($driveDirName, 'ktp.pdf', 'google');
+            $post_files->ktp = 'ktp.pdf';
+        }
+        if (!empty($this->cv)) {
+            $this->ktp->storeAs($driveDirName, 'cv.pdf', 'google');
+            $post_files->cv = 'cv.pdf';
+        }
+        if (!empty($this->certificate)) {
+            $this->ktp->storeAs($driveDirName, 'certificate.pdf', 'google');
+            $post_files->certificate = 'certificate.pdf';
+        }
+        $post->employee_files()->save($post_files);
 
         $this->emit('employeeStore'); // Close model to using to jquery
         session()->flash('success', 'New Employee has been added.');
@@ -135,7 +198,10 @@ class Employee extends Component
         ]);
 
         $post = Emp::find($this->employee_id);
-        $post->full_name = $this->full_name;
+        if ($post->full_name != $this->full_name) {
+            updateDriveFolder($post->id, $post->full_name, $this->full_name);
+            $post->full_name = $this->full_name;
+        }
         $post->addition_information = $this->addition_information;
         $post->position = $this->position;
         $post->status = $this->status;
@@ -149,6 +215,44 @@ class Employee extends Component
         $this->resetInputFields();
     }
 
+    public function upload()
+    {
+        $post_files = EmployeeFiles::where('employee_id', $this->employee_id)->first();
+        if (!empty($this->ktp)) {
+            deleteDriveFileInFolder($post_files->dir_name, $post_files->ktp);
+            $this->ktp->storeAs($post_files->dir_name, 'ktp.pdf', 'google');
+            $post_files->ktp = 'ktp.pdf';
+        }
+        if (!empty($this->cv)) {
+            deleteDriveFileInFolder($post_files->dir_name, $post_files->cv);
+            $this->cv->storeAs($post_files->dir_name, 'cv.pdf', 'google');
+            $post_files->cv = 'cv.pdf';
+        }
+        if (!empty($this->certificate)) {
+            deleteDriveFileInFolder($post_files->dir_name, $post_files->certificate);
+            $this->certificate->storeAs($post_files->dir_name, 'certificate.pdf', 'google');
+            $post_files->certificate = 'certificate.pdf';
+        }
+        $post_files->save();
+
+        $this->emit('employeeUploadFiles'); // Close model to using to jquery
+        session()->flash('success', 'Employee <span class="font-weight-bold">'.$this->full_name.'\'s</span> files have been updated.');
+        $this->resetInputFields();
+    }
+
+    public function download($folder, $file)
+    {
+        $this->emitSelf('download', $folder, $file);
+        if ($file == 'ktp.pdf') {
+            $nameFile = 'KTP';
+        } else if ($file == 'cv.pdf') {
+            $nameFile = 'CV';
+        } else {
+            $nameFile = 'certificate';
+        }
+        session()->flash('success', '<span class="font-weight-bold">'.$this->full_name.'\'s</span> '.$nameFile.' has been started downloading!');
+    }
+
     public function show($emp_id)
     {
         $emp = Emp::find($emp_id);
@@ -160,6 +264,10 @@ class Employee extends Component
         $this->join_date = $emp->join_date;
         $this->end_date = $emp->end_date;
         $this->contract_duration = $emp->contract_duration;
+        $this->dir_name = $emp->employee_files->dir_name;
+        $this->ktp = $emp->employee_files->ktp;
+        $this->cv = $emp->employee_files->cv;
+        $this->certificate = $emp->employee_files->certificate;
     }
 
     public function confirm_delete($emp_id)
@@ -171,10 +279,13 @@ class Employee extends Component
 
     public function delete()
     {
-        // if (Emp::find($emp_id)->employee_files) {
-        //     Emp::find($emp_id)->employee_files->delete();
-        // }
-        Emp::find($this->employee_id)->delete();
+        $post = Emp::find($this->employee_id);
+        if (!empty($post->employee_files())) {
+            deleteDriveFolder($post->employee_files->dir_name);
+            $post->employee_files->delete();
+        }
+        $post->delete();
+
         $this->emit('employeeDelete'); // Close model to using to jquery
         session()->flash('success', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been deleted.');
         $this->resetInputFields();

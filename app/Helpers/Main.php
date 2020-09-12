@@ -1,6 +1,7 @@
 <?php
 
-function forCalendar($datetime){
+function forCalendar($datetime)
+{
     foreach ($datetime as $k => $v)
     {
         $datetime[$k]['title'] = $datetime[$k]['event_name'];
@@ -29,7 +30,8 @@ function forCalendar($datetime){
     return json_encode($datetime);
 }
 
-function daysDifference($firstDate, $secondDate) {
+function daysDifference($firstDate, $secondDate)
+{
     $datediff = strtotime($secondDate) - strtotime($firstDate);
     return round($datediff / (60 * 60 * 24));
 }
@@ -48,4 +50,55 @@ function get_x_months_to_the_future( $base_time = null, $months = 1 )
         $x_months_to_the_future = strtotime( date("Ym01His", $x_months_to_the_future) . " -1 day" );
 
     return $x_months_to_the_future;
+}
+
+function createGetDriveFolder($dirName)
+{
+    Storage::cloud()->makeDirectory($dirName);
+    $dir = '/';
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+    $dir = $contents->where('type', '=', 'dir')
+        ->where('filename', '=', $dirName)
+        ->first(); // There could be duplicate directory names!
+    return $dir['path'];
+}
+
+function updateDriveFolder($directoryEmpId, $directoryEmpName, $destinationName)
+{
+    // Now find that directory and use its ID (path) to rename it
+    $dir = '/';
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+    $directory = $contents
+        ->where('type', '=', 'dir')
+        ->where('filename', '=', $directoryEmpId.'-'.$directoryEmpName)
+        ->first(); // there can be duplicate file names!
+
+    Storage::cloud()->move($directory['path'], $directoryEmpId.'-'.$destinationName);
+}
+
+function deleteDriveFileInFolder($folderName, $fileName)
+{
+    // Now find that file and use its ID (path) to delete it
+    $dir = '/'.$folderName;
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+    $file = $contents
+        ->where('type', '=', 'file')
+        ->where('filename', '=', pathinfo($fileName, PATHINFO_FILENAME))
+        ->where('extension', '=', pathinfo($fileName, PATHINFO_EXTENSION))
+        ->first(); // there can be duplicate file names!
+    // Check if there's a file, then delete it!
+    if (!empty($file)) {
+        Storage::cloud()->delete($file['path']);
+    }
+}
+
+function deleteDriveFolder($directoryName)
+{
+    Storage::cloud()->deleteDirectory($directoryName);
 }

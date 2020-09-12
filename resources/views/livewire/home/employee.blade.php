@@ -71,13 +71,16 @@
                                 <td>{!! ($emp->status=="Active") ? '<i
                                         class="icofont icofont-tick-mark"></i> Active' : '<i
                                         class="icofont icofont-close"></i> Inactive' !!}</td>
-                                <td><a href="" class="icofont icofont-download mr-3"></a>
-                                    <a href="" class="icofont icofont-upload" data-toggle="modal"
-                                        data-target="#modalUploadFileEmployee"></a></td>
-                                <td><a style="cursor: pointer" wire:click="edit({{ $emp->id }})" class="icofont icofont-edit mr-3" data-toggle="modal"
+                                <td>
+                                    <a style="cursor: pointer" wire:click="show({{ $emp->id }})" class="icofont icofont-download mr-3" data-toggle="modal"
+                                    data-target="#modalDownloadEmployee"></a>
+                                    <a style="cursor: pointer" wire:click="edit({{ $emp->id }})" class="icofont icofont-upload" data-toggle="modal"
+                                        data-target="#modalUploadEmployee"></a></td>
+                                <td>
+                                    <a style="cursor: pointer" wire:click="edit({{ $emp->id }})" class="icofont icofont-edit mr-3" data-toggle="modal"
                                         data-target="#modalEditEmployee"></a>
                                     <a style="cursor: pointer" wire:click="confirm_delete({{ $emp->id }})" class="icofont icofont-bin mr-3" data-toggle="modal" data-target="#modalDeleteEmployee"></a>
-                                    <a href="" class="icofont icofont-file-text" data-toggle="modal"
+                                    <a style="cursor: pointer" wire:click="show({{ $emp->id }})" class="icofont icofont-file-text" data-toggle="modal"
                                         data-target="#modalShowEmployee"></a></td>
                             </tr>
                             @endforeach
@@ -110,12 +113,17 @@
     @include('livewire.home.modals.employee-edit')
     <!--Modal Pop Up Form view/show employee-->
     @include('livewire.home.modals.employee-show')
+    <!--Modal Pop Up Form upload files employee-->
+    @include('livewire.home.modals.employee-upload')
+    <!--Modal Pop Up Form download files employee-->
+    @include('livewire.home.modals.employee-download')
     <!--Modal Pop Up Confirm delete employee-->
     @include('livewire.home.modals.employee-delete')
 
     @push('employee-script')
         @stack('employee-create-script')
         @stack('employee-update-script')
+        @stack('employee-upload-script')
         @stack('employee-delete-script')
     @endpush
 </div>
