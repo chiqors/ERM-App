@@ -15,6 +15,7 @@ class EmployeeFiles extends Model
 
     protected $fillable = [
         'employee_id',
+        'dir_name',
         'cv',
         'ktp',
         'certificate'

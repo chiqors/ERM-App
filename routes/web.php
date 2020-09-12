@@ -22,3 +22,4 @@ Route::livewire('/login', 'login')
     ->layout('layouts.auth', [
         'title' => 'Login'
     ]);
+Route::get('/download/{folder}/{file}', 'IDMController@download')->name('download');

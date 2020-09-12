@@ -16,9 +16,10 @@ class CreateEmployeeFilesTable extends Migration
         Schema::create('employee_files', function (Blueprint $table) {
             $table->id();
             $table->integer("employee_id");
-            $table->string("cv");
-            $table->string("ktp");
-            $table->string("certificate");
+            $table->string("dir_name");
+            $table->string("cv")->nullable();
+            $table->string("ktp")->nullable();
+            $table->string("certificate")->nullable();
             $table->timestamps();
         });
     }
