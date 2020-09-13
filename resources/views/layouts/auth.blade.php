@@ -18,7 +18,7 @@
     <meta name="keywords"
         content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
-    
+
     <link rel="icon" href="{{ asset('assets/images/logo.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
@@ -27,7 +27,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/icofont/css/icofont.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+
     @yield('hstyles')
+    @livewireStyles
 
 </head>
 
@@ -102,6 +104,7 @@
     <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/common-pages.js') }}"></script>
 
+    @livewireScripts
     @yield('fscripts')
 
 </body>

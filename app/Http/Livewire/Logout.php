@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Home;
+namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Employee;
 
-class Main extends Component
+class Logout extends Component
 {
-    public function mount()
-    {
-        // $this->middleware('guest')->except('logout');
-    }
-
     public function logout()
     {
         \Auth::logout();
@@ -20,6 +16,6 @@ class Main extends Component
 
     public function render()
     {
-        return view('livewire.home.main');
+        return view('livewire.logout');
     }
 }
