@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Hash;
 use App\Employee;
 
 class Login extends Component
@@ -24,15 +23,17 @@ class Login extends Component
 
     public function login()
     {
-        $validatedDate = $this->validate([
+        $this->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if(\Auth::attempt(array('email' => $this->email, 'password' => $this->password))){
-            session()->flash('message', "You are Login successful.");
-        }else{
-            session()->flash('error', 'email and password are wrong.');
+        if (\Auth::attempt(array('email' => $this->email, 'password' => $this->password)) ){
+            //Authentication passed...
+            session()->flash('success', "You have been Logged in successful!");
+            return redirect()->intended(route('home'));
+        } else {
+            session()->flash('error', 'Email and Password are invalid!');
         }
     }
 

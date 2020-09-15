@@ -39,26 +39,14 @@
             <ul class="nav-right">
                 <li class="user-profile header-notification">
                     <a href="#!" class="waves-effect waves-light">
-                        <img src="{{ (@$auth->avatar) ? storage_path('public/peternakan/' . $auth->avatar) : asset('assets/images/avatar-0.png') }}" class="img-radius"
+                        <img src="{{ asset('assets/images/avatar-0.png') }}" class="img-radius"
                             alt="User-Profile-Image">
-                        <span>{{ (@$auth->username) ? $auth->username : 'Guest' }}</span>
+                        <span>{{ Auth::user()->full_name }}</span>
                         <i class="ti-angle-down"></i>
                     </a>
                     <ul class="show-notification profile-notification">
                         <li class="waves-effect waves-light">
-                            <a href="#">
-                                <i class="ti-user"></i> Profile
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#">
-                                <i class="ti-settings"></i> Settings
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#">
-                                <i class="ti-layout-sidebar-left"></i> Logout
-                            </a>
+                            @livewire('logout')
                         </li>
                     </ul>
                 </li>
