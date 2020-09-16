@@ -171,7 +171,7 @@ class Employee extends Component
         $post->employee_files()->save($post_files);
 
         $this->emit('employeeStore'); // Close model to using to jquery
-        session()->flash('success', 'New Employee has been added.');
+        session()->flash('success-employee', 'New Employee has been added.');
         $this->resetInputFields();
     }
 
@@ -211,7 +211,7 @@ class Employee extends Component
         $post->save();
 
         $this->emit('employeeUpdate'); // Close model to using to jquery
-        session()->flash('success', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been updated.');
+        session()->flash('success-employee', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been updated.');
         $this->resetInputFields();
     }
 
@@ -236,7 +236,7 @@ class Employee extends Component
         $post_files->save();
 
         $this->emit('employeeUploadFiles'); // Close model to using to jquery
-        session()->flash('success', 'Employee <span class="font-weight-bold">'.$this->full_name.'\'s</span> files have been updated.');
+        session()->flash('success-employee', 'Employee <span class="font-weight-bold">'.$this->full_name.'\'s</span> files have been updated.');
         $this->resetInputFields();
     }
 
@@ -250,7 +250,7 @@ class Employee extends Component
         } else {
             $nameFile = 'certificate';
         }
-        session()->flash('success', '<span class="font-weight-bold">'.$this->full_name.'\'s</span> '.$nameFile.' has been started downloading!');
+        session()->flash('success-employee', '<span class="font-weight-bold">'.$this->full_name.'\'s</span> '.$nameFile.' has been started downloading!');
     }
 
     public function show($emp_id)
@@ -287,7 +287,7 @@ class Employee extends Component
         $post->delete();
 
         $this->emit('employeeDelete'); // Close model to using to jquery
-        session()->flash('success', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been deleted.');
+        session()->flash('success-employee', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been deleted.');
         $this->resetInputFields();
     }
 

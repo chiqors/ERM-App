@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body mx-3">
-                @include('includes.messages')
+                @include('includes.employee-messages')
                 <div wire:loading wire:target="download" wire:loading.class="btn btn-outline-info waves-effect waves-light disabled">
                     <i class="icofont icofont-cloud-download"></i> Processing..
                 </div>

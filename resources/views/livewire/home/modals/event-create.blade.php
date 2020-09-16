@@ -39,18 +39,20 @@
                 </div>
                 <div class="md-form mb-3">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-12 col-lg-6">
                             <label>Event Start <span class="text-c-red">*</span></label>
                             <input type="datetime-local" class="form-control form-control-sm"
                             wire:model="event_start">
                             @error('event_start') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
-                        <div class="col-lg-6">
+                        @if($event_type != 'One Time')
+                        <div class="col-12 col-lg-6">
                             <label>Event End <span class="text-c-red">*</span></label>
                             <input type="datetime-local" class="form-control form-control-sm"
                             wire:model="event_end">
                             @error('event_end') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="md-form mb-3">

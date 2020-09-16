@@ -71,22 +71,31 @@ class EventCurrent extends Component
     // COMPLETE FUNCTION
     // -----------------
 
-    public function complete($ev_id, $name, $status)
+    public function complete($ev_id, $status)
     {
+        $update = Event::find($ev_id);
+        if ($update->event_type == 'Recurring Monthly') {
+            $update->event_start = $date = date('Y-m-d', strtotime('+1 month', strtotime($update->event_start)));
+            $update->save();
+        }
+        if ($update->event_type == 'Recurring Yearly') {
+            $update->event_start = $date = date('Y-m-d', strtotime('+1 year', strtotime($update->event_start)));
+            $update->save();
+        }
         if ($status) {
             $post = new ActivityLogs();
-            $post->event_id = $ev_id;
+            $post->event_id = $update->id;
             $post->status = 'Accepted';
             $post->time = date('Y-m-d');
             $post->save();
-            session()->flash('message', 'Event <span class="font-weight-bold">'.$name.'</span> has been completed. Added to logs.');
+            session()->flash('success-event-current', 'Event <span class="font-weight-bold">'.$update->event_name.'</span> has been completed. Added to logs.');
         } else {
             $post = new ActivityLogs();
-            $post->event_id = $ev_id;
+            $post->event_id = $update->id;
             $post->status = 'Rejected';
             $post->time = date('Y-m-d');
             $post->save();
-            session()->flash('message', 'Event <span class="font-weight-bold">'.$name.'</span> has been cancelled. Added to logs.');
+            session()->flash('success-event-current', 'Event <span class="font-weight-bold">'.$update->event_name.'</span> has been cancelled. Added to logs.');
         }
     }
 }

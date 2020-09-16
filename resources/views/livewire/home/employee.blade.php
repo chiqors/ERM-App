@@ -9,6 +9,7 @@
         </div>
     </div>
     <div class="card-block">
+        @include('includes.employee-messages')
         <div class="row mb-4">
             <div class="col-12 col-lg-6 form-inline">
                 <div class="form-group">

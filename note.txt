@@ -1,0 +1,2 @@
+Trigger jika tgl skrg dgn event recurring lewat..
+maka +1 bln

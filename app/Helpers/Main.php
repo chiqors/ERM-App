@@ -30,13 +30,29 @@ function forCalendar($datetime)
     return json_encode($datetime);
 }
 
+function timeForHuman($input_date, $status_hms = NULL) {
+    $time = strtotime($input_date);
+    switch($status_hms) {
+        case "standar":
+            $view_time = date("d M Y", $time);
+            break;
+        case "current_month":
+            $view_time = date("l jS, h:i A", $time);
+            break;
+        default:
+            $view_time = date("d M Y - H:m:s", $time);
+            break;
+    }
+    return $view_time;
+}
+
 function daysDifference($firstDate, $secondDate)
 {
     $datediff = strtotime($secondDate) - strtotime($firstDate);
     return round($datediff / (60 * 60 * 24));
 }
 
-function get_x_months_to_the_future( $base_time = null, $months = 1 )
+function getXMonthsToTheFuture( $base_time = null, $months = 1 )
 {
     if (is_null($base_time))
         $base_time = time();
