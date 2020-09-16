@@ -15,11 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 // Passing parameters to the layout (Like native @extends('layouts.app', ['title' => 'foo']))
 Route::livewire('/', 'home.main')
+    ->name('home')
     ->layout('layouts.app', [
         'title' => 'Home'
-    ]);
-Route::livewire('/login', 'login')
-    ->layout('layouts.auth', [
-        'title' => 'Login'
-    ]);
-Route::get('/download/{folder}/{file}', 'IDMController@download')->name('download');
+    ])
+    ->middleware('auth');
+    
+Route::get('/download/{folder}/{file}', 'IDMController@download')
+    ->name('download')
+    ->middleware('auth');
+
+Route::group(['middleware'=>'guest'], function() {
+    Route::livewire('/login', 'login')
+        ->name('login')
+        ->layout('layouts.auth', [
+            'title' => 'Login'
+        ]);
+});

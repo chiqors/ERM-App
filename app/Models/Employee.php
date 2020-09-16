@@ -2,21 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
+    use Notifiable;
+
     // Table Name
     protected $table = 'employees';
     // Primary Key
     public $primary_key = 'id';
     // Timestamps
     public $timestamps = false;
+    // Guard
+    protected $guard = 'employee';
+    // Hidden
+    protected $hidden = array('password', 'remember_token');
 
     protected $fillable = [
         'full_name',
         'email',
-        'password',
         'addition_information',
         'position',
         'status',
@@ -24,6 +30,11 @@ class Employee extends Model
         'end_date',
         'contract_duration'
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
     public function employee_event()
     {
