@@ -18,7 +18,7 @@
     <meta name="keywords"
         content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
-    
+
     <link rel="icon" href="{{ asset('assets/images/logo.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
@@ -106,6 +106,7 @@
 
     @livewireScripts
     @yield('fscripts')
+    <script src="{{ mix('js/app.js') }}"></script>
 
 </body>
 

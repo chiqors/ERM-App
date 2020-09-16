@@ -13,14 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Passing parameters to the layout (Like native @extends('layouts.app', ['title' => 'foo']))
 Route::livewire('/', 'home.main')
     ->name('home')
     ->layout('layouts.app', [
         'title' => 'Home'
     ])
     ->middleware('auth');
-    
+ 
 Route::get('/download/{folder}/{file}', 'IDMController@download')
     ->name('download')
     ->middleware('auth');
