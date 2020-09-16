@@ -20,8 +20,7 @@ Route::livewire('/', 'home.main')
     ])
     ->middleware('auth');
 Route::get('/download/{folder}/{file}', 'IDMController@download')
-    ->name('download')
-    ->middleware('auth');
+    ->name('download');
 
 Route::group(['middleware'=>'guest'], function() {
     Route::livewire('/login', 'login')
