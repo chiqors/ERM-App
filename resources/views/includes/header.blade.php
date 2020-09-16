@@ -31,14 +31,14 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                    <a onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
                         <i class="ti-fullscreen"></i>
                     </a>
                 </li>
             </ul>
             <ul class="nav-right">
                 <li class="user-profile header-notification">
-                    <a href="#!" class="waves-effect waves-light">
+                    <a class="waves-effect waves-light">
                         <img src="{{ asset('assets/images/avatar-0.png') }}" class="img-radius"
                             alt="User-Profile-Image">
                         <span>{{ Auth::user()->full_name }}</span>

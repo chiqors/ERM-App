@@ -12,6 +12,7 @@
     <div class="main-body">
         <div class="page-wrapper">
             <div class="page-body">
+                @include('includes.messages')
                 <div class="row">
                     <div class="col-xl-6 col-12">
                         @livewire('home.calender')

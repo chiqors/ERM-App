@@ -13,7 +13,6 @@
             </div>
         </div>
         <div class="card-block">
-            @include('includes.messages')
             <div class="row">
                 <div class="col">
                     <button class="btn btn-sm btn-primary" wire:click="$emit('calenderRender')"><i class="icofont icofont-refresh"></i>Refresh</button>

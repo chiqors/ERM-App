@@ -5,8 +5,6 @@
                 <h5>Event Today</h5>
             </div>
             <div class="card-block">
-                @include('includes.messages')
-
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive dt-responsive" style="border: 1px solid #dee2e6;">

@@ -23,80 +23,6 @@
                                     </select>
                                 </div>
                             </div>
-<<<<<<< HEAD
-=======
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6">
-                        <div class="input-group">
-                            <input wire:model="search" type="text" class="form-control" placeholder="Full Name">
-                            <span class="input-group-append">
-                                <label class="input-group-text"><i class="icofont icofont-ui-search"></i></label>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <div class="table-responsive dt-responsive" style="border: 1px solid #dee2e6;">
-                            <table class="table table-striped table-bordered nowrap">
-                                <thead>
-                                    <tr>
-                                        <th><a wire:click.prevent="sortBy('full_name')" role="button" href="#">
-                                            Employee Name
-                                            @include('includes.dt-sorticon', ['field' => 'full_name'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('event_name')" role="button" href="#">
-                                            Event Name
-                                            @include('includes.dt-sorticon', ['field' => 'event_name'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('event_type')" role="button" href="#">
-                                            Event Type
-                                            @include('includes.dt-sorticon', ['field' => 'event_type'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('event_start')" role="button" href="#">
-                                            Event Date
-                                            @include('includes.dt-sorticon', ['field' => 'event_start'])
-                                        </a></th>
-                                        <th width="70">
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(!$events->isEmpty())
-                                    @foreach ($events as $ev)
-                                    <tr>
-                                        <td>
-                                            @foreach($ev->employee as $emp)
-                                            {{ $loop->first ? '' : '--' }}
-                                            <span class="nice">{{ $emp->full_name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>{{ $ev->event_name }}</td>
-                                        <td>{{ $ev->event_type }}</td>
-                                        <td>{{ $ev->event_start }} - {{ $ev->event_end }}</td>
-                                        <td>
-                                            <a href="" class="icofont icofont-edit mr-3" data-toggle="modal"
-                                                    data-target="#modalEditEvent" data-dismiss="modal"></a>
-                                            <a href="" class="icofont icofont-bin mr-3"></a>
-                                            <a href="" class="icofont icofont-file-text" data-toggle="modal"
-                                            data-target="#modalShowEvent"></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    @else
-                                    <tr>
-                                        <td colspan="5" class="text-center">
-                                            No data available
-                                        </td>
-                                    </tr>
-                                    @endif
-                                </tbody>
-                            </table>
->>>>>>> develop
                         </div>
                     </div>
 
@@ -116,10 +42,9 @@
                             <table class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
-                                        <th><a wire:click.prevent="sortBy('full_name')" role="button" href="#">
+                                        <th>
                                             Employee Name
-                                            @include('includes.dt-sorticon', ['field' => 'full_name'])
-                                        </a></th>
+                                        </th>
                                         <th><a wire:click.prevent="sortBy('event_name')" role="button" href="#">
                                             Event Name
                                             @include('includes.dt-sorticon', ['field' => 'event_name'])
@@ -182,19 +107,6 @@
                         Showing {{ $events->firstItem() }} to {{ $events->lastItem() }} out of {{ $events->total() }} results
                     </div>
                 </div>
-
-<<<<<<< HEAD
-=======
-                <div class="row">
-                    <div class="col">
-                        {{ $events->links() }}
-                    </div>
-
-                    <div class="col text-right text-muted">
-                        Showing {{ $events->firstItem() }} to {{ $events->lastItem() }} out of {{ $events->total() }} results
-                    </div>
-                </div>
->>>>>>> develop
             </div>
         </div>
     </div>
