@@ -36,4 +36,5 @@ class Login extends Component
             session()->flash('error', 'Email and Password are invalid!');
         }
     }
+
 }

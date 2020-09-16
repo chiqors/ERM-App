@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('full_name');
             $table->string('email')->nullable();
             $table->string('password')->nullable();
-            $$table->rememberToken()->nullable();
+            $table->rememberToken()->nullable();
             $table->string('addition_information')->nullable();
             $table->string('position');
             $table->enum('status', ['Active','Inactive']);

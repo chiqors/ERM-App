@@ -19,7 +19,6 @@ Route::livewire('/', 'home.main')
         'title' => 'Home'
     ])
     ->middleware('auth');
- 
 Route::get('/download/{folder}/{file}', 'IDMController@download')
     ->name('download')
     ->middleware('auth');

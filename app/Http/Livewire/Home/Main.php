@@ -17,7 +17,7 @@ class Main extends Component
         return redirect()
             ->intended(route('login'));
     }
-    
+
     public function render()
     {
         return view('livewire.home.main');
