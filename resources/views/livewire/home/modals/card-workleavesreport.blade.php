@@ -53,6 +53,9 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                                             Status
                                             @include('includes.dt-sorticon', ['field' => 'status'])
                                         </a></th>
+                                        <th width="70">
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,6 +67,9 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                                         <td>{!! ($emp->status=="Active") ? '<i
                                                 class="icofont icofont-tick-mark"></i> Active' : '<i
                                                 class="icofont icofont-close"></i> Inactive' !!}</td>
+                                        <td>
+                                            <a style="cursor: pointer" wire:click="show({{ $emp->id }})" class="icofont icofont-file-text" data-toggle="modal"
+                                                data-target="#modalCardShowWorkLeavesReport" data-dismiss="modal"></a></td>
                                     </tr>
                                     @endforeach
                                     @else

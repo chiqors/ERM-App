@@ -44,19 +44,20 @@
     @push('calender-script')
         <script type="text/javascript">
             var calender = {!! $calendar !!};
+            $('#calender').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,listMonth'
+                },
+                navLinks: true,
+                businessHours: false,
+                editable: false,
+                droppable: false,
+                events: calender
+            });
             window.livewire.on('calenderRender', () => {
-                $('#calender').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,listMonth'
-                    },
-                    navLinks: true,
-                    businessHours: false,
-                    editable: false,
-                    droppable: false,
-                    events: calender
-                });
+                calender = {!! $calendar !!};
             });
         </script>
         @stack('event-create-script')

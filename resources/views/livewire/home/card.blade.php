@@ -66,4 +66,10 @@
     <!--Modal Pop Up Form show internship status-->
     @include('livewire.home.modals.card-internshipstatus')
 
+    <!--Modal Pop Up Form view/show work leaves report-->
+    @include('livewire.home.modals.card-show-workleavesreport')
+
+    <!--Modal Pop Up Form view/show internship status-->
+    @include('livewire.home.modals.card-show-internshipstatus')
+
 </div>

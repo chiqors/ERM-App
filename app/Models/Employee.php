@@ -36,6 +36,11 @@ class Employee extends Authenticatable
         return $this->password;
     }
 
+    public function event()
+    {
+        return $this->belongsToMany('App\Models\Event');
+    }
+
     public function employee_event()
     {
         return $this->hasMany('App\Models\EmployeeEvent','employee_id');
