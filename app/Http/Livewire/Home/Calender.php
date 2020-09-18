@@ -20,7 +20,7 @@ class Calender extends Component
     // Initialize model of event with variables
     public $calendar;
     public $employees, $employee_count, $event_id, $event_name, $event_type, $event_start, $event_end, $event_details;
-    public $employee_ids, $relation;
+    public $employee_ids, $employee_names, $relation;
     // ----------------------------------------
 
     // Initialize listener
@@ -47,6 +47,7 @@ class Calender extends Component
         $this->search = '';
 
         $this->employee_ids = [];
+        $this->employee_names = [];
         $this->relation = [];
         $this->employee_count = 0;
     }
@@ -71,6 +72,7 @@ class Calender extends Component
         $this->event_details = '';
 
         $this->employee_ids = [];
+        $this->employee_names = [];
         $this->relation = [];
         $this->employee_count = 0;
     }
@@ -199,6 +201,7 @@ class Calender extends Component
         $this->event_start = $eve->event_start;
         $this->event_end = $eve->event_end;
         $this->event_details = $eve->event_details;
+        $this->employee_names = $eve->employee;
     }
 
     public function confirm_delete($ev_id)

@@ -36,6 +36,9 @@ function timeForHuman($input_date, $status_hms = NULL) {
         case "standar":
             $view_time = date("d M Y", $time);
             break;
+        case "timeOnly":
+            $view_time = date("h:i", $time);
+            break;
         case "current_month":
             $view_time = date("l jS, h:i A", $time);
             break;

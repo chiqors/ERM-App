@@ -9,25 +9,45 @@
                 </button>
             </div>
             <div class="modal-body mx-3">
-                <div class="md-form mb-3">
-                    <label>Employee Name</label>
-                    <input type="text" class="form-control form-control-sm">
+                <div class="md-form mb-4">
+                    <label style="color:#6D4786;font-size:15px;font-weight: bold;">Employee Name :</label><br>
+                <label style="font-size:15px;">{{ $full_name }}</label>
                 </div>
-                <div class="md-form mb-3">
-                    <label>Position</label>
-                    <input type="text" class="form-control form-control-sm">
+                <div class="md-form row mb-4">
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label style="color:#6D4786;font-size:15px;font-weight: bold;">Position :</label><br>
+                                <label style="font-size:15px;">{{ $position }}</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label style="color:#6D4786;font-size:15px;font-weight: bold;">Status :</label><br>
+                                <label style="font-size:15px;">{{ $status }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label style="color:#6D4786;font-size:15px;font-weight: bold;">Contract :</label><br>
+                        <label style="font-size:15px;">{{ $contract_duration }} days</label>
+                    </div>
                 </div>
-                <div class="md-form mb-3">
-                    <label>Join Date</label>
-                    <input type="date" class="form-control form-control-sm">
+                <div class="md-form row mb-4">
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label style="color:#6D4786;font-size:15px;font-weight: bold;">Join Date :</label><br>
+                                <label style="font-size:15px;"><i class="icofont icofont-calendar"></i> {{ timeForHuman($join_date,'standard') }}</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label style="color:#6D4786;font-size:15px;font-weight: bold;">End Date :</label><br>
+                                <label style="font-size:15px;"><i class="icofont icofont-calendar"></i> {{ timeForHuman($end_date,'standard') }}</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="md-form mb-3">
-                    <label>End Date</label>
-                    <input type="date" class="form-control form-control-sm">
-                </div>
-                <div class="md-form mb-3">
-                    <label>Contract</label>
-                    <input type="text" class="form-control form-control-sm" readonly>
+                <div class="md-form mb-4">
+                    <label style="color:#6D4786;font-size:15px;font-weight: bold;">Additional Information :</label><br>
+                <label style="font-size:15px;text-align: justify;">{!! $addition_information !!}</label>
                 </div>
             </div>
         </div>

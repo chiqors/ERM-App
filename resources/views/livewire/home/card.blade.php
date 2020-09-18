@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xl-6 col-md-6">
-        <div class="card">
+        <div class="card" style="cursor: pointer" data-toggle="modal" data-target="#modalCardWorkLeavesReport">
             <div class="card-block">
                 <div class="row align-items-center m-l-0">
                     <div class="col-auto">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="col-xl-6 col-md-6">
-        <div class="card">
+        <div class="card" style="cursor: pointer" data-toggle="modal" data-target="#modalCardInternshipStatus">
             <div class="card-block">
                 <div class="row align-items-center m-l-0">
                     <div class="col-auto">
@@ -59,4 +59,11 @@
             </div>
         </div>
     </div>
+
+    <!--Modal Pop Up Form show work leaves report-->
+    @include('livewire.home.modals.card-workleavesreport')
+
+    <!--Modal Pop Up Form show internship status-->
+    @include('livewire.home.modals.card-internshipstatus')
+
 </div>
