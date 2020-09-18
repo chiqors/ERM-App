@@ -20,12 +20,6 @@ class Card extends Component
     public $employee_id, $full_name, $addition_information, $position, $status, $join_date, $end_date, $contract_duration;
     public $workleaves_count, $internship_status, $active_employees, $inactive_employees, $this_month;
     // -------------------------------------------
-
-    // Initialize listener
-    protected $listeners = [
-        'contractCalc' => 'contractCalculate',
-    ];
-    // -------------------
     
     // Constructor On Load Server-side (Initialization)
     public function mount()

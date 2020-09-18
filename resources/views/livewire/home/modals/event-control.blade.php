@@ -9,7 +9,6 @@
                 </button>
             </div>
             <div class="modal-body mx-3">
-                @include('includes.event-control-messages')
                 <div class="row mb-2">
                     <div class="col-12 col-lg-6 form-inline">
                         <div class="form-group">

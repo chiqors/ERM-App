@@ -60,8 +60,13 @@
                         @error('event_details') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                     <div class="modal-footer d-flex justify-content-right">
-                        <button wire:click.prevent="cancel" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#modalControlEvent">Cancel</button>
-                        <button wire:click.prevent="update" class="btn btn-primary waves-effect waves-light">Submit</button>
+                        <div wire:loading.remove wire:target="update">
+                            <button wire:click.prevent="cancel" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Cancel</button>
+                            <button wire:click.prevent="update" class="btn btn-warning waves-effect waves-light"><i class="icofont icofont-swoosh-up"></i> Update</button>
+                        </div>
+                        <div wire:loading wire:target="update" wire:loading.class="btn btn-outline-info waves-effect waves-light disabled">
+                            <i class="icofont icofont-cloud-upload"></i> Loading..
+                        </div>
                     </div>
                 </div>
             </div>

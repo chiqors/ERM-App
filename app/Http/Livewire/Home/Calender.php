@@ -116,7 +116,7 @@ class Calender extends Component
             'event_name' => 'required',
             'event_type' => 'required',
             'event_start' => 'required',
-            'event_end' => 'required',
+            'event_end' => 'required'
         ]);
 
         $post = new Event();
@@ -139,7 +139,7 @@ class Calender extends Component
         $this->emitTo('home.event-current', 'eventRefresh');
         $this->emit('calenderRefresh');
         $this->emit('eventStore'); // Close model to using to jquery
-        session()->flash('success', 'New Event has been added to calendar.');
+        session()->flash('success-event-control', 'New Event has been added to calendar.');
         $this->resetInputFields();
     }
 
@@ -188,7 +188,7 @@ class Calender extends Component
         $this->emitTo('home.event-current', 'eventRefresh');
         $this->emit('calenderRefresh');
         $this->emit('eventUpdate'); // Close model to using to jquery
-        session()->flash('success', 'Event <span class="font-weight-bold">'.$this->event_name.'</span> has been updated.');
+        session()->flash('success-event-control', 'Event <span class="font-weight-bold">'.$this->event_name.'</span> has been updated.');
         $this->resetInputFields();
     }
 
@@ -220,7 +220,7 @@ class Calender extends Component
         $this->emitTo('home.event-current', 'eventRefresh');
         $this->emit('calenderRefresh');
         $this->emit('eventDelete'); // Close model to using to jquery
-        session()->flash('success', 'Event <span class="font-weight-bold">'.$this->event_name.'</span> has been deleted.');
+        session()->flash('success-event-control', 'Event <span class="font-weight-bold">'.$this->event_name.'</span> has been deleted.');
         $this->resetInputFields();
     }
 

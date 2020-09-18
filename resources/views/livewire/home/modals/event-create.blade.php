@@ -45,14 +45,12 @@
                             wire:model="event_start">
                             @error('event_start') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
-                        @if($event_type != 'One Time')
                         <div class="col-12 col-lg-6">
                             <label>Event End <span class="text-c-red">*</span></label>
                             <input type="datetime-local" class="form-control form-control-sm"
                             wire:model="event_end">
                             @error('event_end') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
-                        @endif
                     </div>
                 </div>
                 <div class="md-form mb-3">
@@ -61,8 +59,13 @@
                     @error('event_details') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
                 <div class="modal-footer d-flex justify-content-right">
-                    <button wire:click.prevent="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button wire:click.prevent="store" class="btn btn-primary waves-effect waves-light">Submit</button>
+                    <div wire:loading.remove wire:target="store">
+                        <button wire:click.prevent="cancel" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Cancel</button>
+                        <button wire:click.prevent="store" class="btn btn-primary waves-effect waves-light"><i class="icofont icofont-upload"></i> Store</button>
+                    </div>
+                    <div wire:loading wire:target="store" wire:loading.class="btn btn-info waves-effect waves-light disabled">
+                        <i class="icofont icofont-cloud-upload"></i> Loading..
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,7 +73,7 @@
     @push('event-create-script')
     <script type="text/javascript">
         window.livewire.on('eventStore', () => {
-            $('#modalAddEvent').modal('hide');
+            $('#modalCreateEvent').modal('hide');
         });
     </script>
     @endpush
