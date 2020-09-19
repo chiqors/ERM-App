@@ -14,7 +14,7 @@
                 <div class="md-form mb-3">
                     <label>Choose number of employees <span class="text-c-red">*</span></label>
                     @if($employees)
-                    <input class="form-control" type="number" wire:model="employee_count">
+                    <input class="form-control" type="number" wire:model="employee_count" max="{{ $employees->count() }}">
                     @for($f = 0; $f < $employee_count; $f++)
                     <select class="form-control" wire:model="employee_ids.{{ $f }}">
                         @foreach($employees as $emp)

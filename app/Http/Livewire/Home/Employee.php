@@ -40,6 +40,8 @@ class Employee extends Component
         $this->sortAsc = true;
         $this->search = '';
         $this->iteration = 0;
+
+        $this->contract_duration = NULL;
     }
 
     // Rendering on each function fired Client-side
@@ -48,6 +50,7 @@ class Employee extends Component
         return view('livewire.home.employee', [
             'employees' => Emp::search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                ->where('id', '!=', \Auth::user()->id)
                 ->paginate($this->perPage)
         ]);
     }
@@ -102,7 +105,15 @@ class Employee extends Component
 
     public function contractCalculate()
     {
+        if (is_null($this->end_date)) {
+            return $this->contract_duration = 0;
+        }
         $this->contract_duration = daysDifference($this->join_date, $this->end_date);
+        if ($this->contract_duration < 0) {
+            $this->end_date = '';
+            $this->contract_duration = NULL;
+            return session()->flash('error-contract', 'End date must be ahead of join date.');
+        }
     }
 
     // ------------------
@@ -186,6 +197,10 @@ class Employee extends Component
         $this->join_date = $emp->join_date;
         $this->end_date = $emp->end_date;
         $this->contract_duration = $emp->contract_duration;
+        $this->dir_name = $emp->employee_files->dir_name;
+        $this->ktp = $emp->employee_files->ktp;
+        $this->cv = $emp->employee_files->cv;
+        $this->certificate = $emp->employee_files->certificate;
     }
 
     public function update()

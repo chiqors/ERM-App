@@ -10,62 +10,67 @@
                     <label>Employee Directory</label>
                     <input type="text" class="form-control form-control-sm" value="{{ $employee_id.'-'.$full_name }}" readonly>
                 </div>
-                <div class="md-form mb-3">
-                    <label>KTP</label>
-                    <div
-                        x-data="{ isUploading: false, progress: 0 }"
-                        x-on:livewire-upload-start="isUploading = true"
-                        x-on:livewire-upload-finish="isUploading = false"
-                        x-on:livewire-upload-error="isUploading = false"
-                        x-on:livewire-upload-progress="progress = $event.detail.progress"
-                    >
-                        <!-- File Input -->
-                        <input type="file" class="form-control-file border" wire:model="ktp">
 
-                        <!-- Progress Bar -->
-                        <div x-show="isUploading">
-                            <progress max="100" x-bind:value="progress"></progress>
-                        </div>
-                    </div>
-                    @error('ktp') <span class="text-danger error">{{ $message }}</span> @enderror
-                </div>
-                <div class="md-form mb-3">
-                    <label>CV</label>
-                    <div
-                        x-data="{ isUploading: false, progress: 0 }"
-                        x-on:livewire-upload-start="isUploading = true"
-                        x-on:livewire-upload-finish="isUploading = false"
-                        x-on:livewire-upload-error="isUploading = false"
-                        x-on:livewire-upload-progress="progress = $event.detail.progress"
-                    >
-                        <!-- File Input -->
-                        <input type="file" class="form-control-file border" wire:model="cv">
+                <hr class="hr-text" data-content="Files Information">
 
-                        <!-- Progress Bar -->
-                        <div x-show="isUploading">
-                            <progress max="100" x-bind:value="progress"></progress>
-                        </div>
-                    </div>
-                    @error('cv') <span class="text-danger error">{{ $message }}</span> @enderror
-                </div>
-                <div class="md-form">
-                    <label>Certificate</label>
-                    <div
-                        x-data="{ isUploading: false, progress: 0 }"
-                        x-on:livewire-upload-start="isUploading = true"
-                        x-on:livewire-upload-finish="isUploading = false"
-                        x-on:livewire-upload-error="isUploading = false"
-                        x-on:livewire-upload-progress="progress = $event.detail.progress"
-                    >
-                        <!-- File Input -->
-                        <input type="file" class="form-control-file border" wire:model="certificate">
+                <div class="md-form row">
+                    <div class="col-lg-4">
+                        <label><i class="icofont icofont-card"></i> KTP {!! (!empty($ktp)) ? '<span class="font-weight-bold">(Exists)</span>' : '' !!}</label>
+                        <div
+                            x-data="{ isUploading: false, progress: 0 }"
+                            x-on:livewire-upload-start="isUploading = true"
+                            x-on:livewire-upload-finish="isUploading = false"
+                            x-on:livewire-upload-error="isUploading = false"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress"
+                        >
+                            <!-- File Input -->
+                            <input type="file" class="form-control-file border" wire:model="ktp">
 
-                        <!-- Progress Bar -->
-                        <div x-show="isUploading">
-                            <progress max="100" x-bind:value="progress"></progress>
+                            <!-- Progress Bar -->
+                            <div x-show="isUploading">
+                                <progress max="100" x-bind:value="progress"></progress>
+                            </div>
                         </div>
+                        @error('ktp') <span class="text-danger error">{{ $message }}</span> @enderror
                     </div>
-                    @error('certificate') <span class="text-danger error">{{ $message }}</span> @enderror
+                    <div class="col-lg-4">
+                        <label><i class="icofont icofont-paper"></i> CV {!! (!empty($cv)) ? '<span class="font-weight-bold">(Exists)</span>' : '' !!}</label>
+                        <div
+                            x-data="{ isUploading: false, progress: 0 }"
+                            x-on:livewire-upload-start="isUploading = true"
+                            x-on:livewire-upload-finish="isUploading = false"
+                            x-on:livewire-upload-error="isUploading = false"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress"
+                        >
+                            <!-- File Input -->
+                            <input type="file" class="form-control-file border" wire:model="cv">
+
+                            <!-- Progress Bar -->
+                            <div x-show="isUploading">
+                                <progress max="100" x-bind:value="progress"></progress>
+                            </div>
+                        </div>
+                        @error('cv') <span class="text-danger error">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-lg-4">
+                        <label><i class="icofont icofont-certificate"></i> Certificate {!! (!empty($certificate)) ? '<span class="font-weight-bold">(Exists)</span>' : '' !!}</label>
+                        <div
+                            x-data="{ isUploading: false, progress: 0 }"
+                            x-on:livewire-upload-start="isUploading = true"
+                            x-on:livewire-upload-finish="isUploading = false"
+                            x-on:livewire-upload-error="isUploading = false"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress"
+                        >
+                            <!-- File Input -->
+                            <input type="file" class="form-control-file border" wire:model="certificate">
+
+                            <!-- Progress Bar -->
+                            <div x-show="isUploading">
+                                <progress max="100" x-bind:value="progress"></progress>
+                            </div>
+                        </div>
+                        @error('certificate') <span class="text-danger error">{{ $message }}</span> @enderror
+                    </div>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-right">

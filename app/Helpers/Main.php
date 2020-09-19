@@ -33,7 +33,7 @@ function forCalendar($datetime)
 function timeForHuman($input_date, $status_hms = NULL) {
     $time = strtotime($input_date);
     switch($status_hms) {
-        case "standar":
+        case "standard":
             $view_time = date("d M Y", $time);
             break;
         case "timeOnly":

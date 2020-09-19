@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-lg-2">
                         <label style="color:#6D4786;font-size:15px;font-weight: bold;">Contract :</label><br>
-                        <label style="font-size:15px;">{{ $contract_duration }} days</label>
+                        <label style="font-size:15px;">{{ (is_null(@$contract_duration)) ? '-' : (($contract_duration == 0) ? 'Permanent' : $contract_duration.' days') }}</label>
                     </div>
                 </div>
                 <div class="md-form row mb-4">
@@ -38,16 +38,32 @@
                                 <label style="color:#6D4786;font-size:15px;font-weight: bold;">Join Date :</label><br>
                                 <label style="font-size:15px;"><i class="icofont icofont-calendar"></i> {{ timeForHuman($join_date,'standard') }}</label>
                             </div>
+                            @if($end_date != '1970-01-01')
                             <div class="col-lg-6">
                                 <label style="color:#6D4786;font-size:15px;font-weight: bold;">End Date :</label><br>
                                 <label style="font-size:15px;"><i class="icofont icofont-calendar"></i> {{ timeForHuman($end_date,'standard') }}</label>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div class="md-form mb-4">
                     <label style="color:#6D4786;font-size:15px;font-weight: bold;">Additional Information :</label><br>
-                <label style="font-size:15px;text-align: justify;">{!! $addition_information !!}</label>
+                    <label style="font-size:15px;text-align: justify;">{!! $addition_information !!}</label>
+                </div>
+
+                <hr class="hr-text" data-content="Open Files Information">
+
+                <div class="md-form mb-3 d-flex justify-content-around">
+                    @if(!empty($ktp))
+                    <a href="{{ url('/stream/'.$dir_name.'/'.$ktp) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"><i class="icofont icofont-card"></i> KTP</a>
+                    @endif
+                    @if(!empty($cv))
+                    <a href="{{ url('/stream/'.$dir_name.'/'.$cv) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"><i class="icofont icofont-paper"></i> CV</a>
+                    @endif
+                    @if(!empty($certificate))
+                    <a href="{{ url('/stream/'.$dir_name.'/'.$certificate) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"><i class="icofont icofont-certificate"></i> Certificate</a>
+                    @endif
                 </div>
             </div>
         </div>

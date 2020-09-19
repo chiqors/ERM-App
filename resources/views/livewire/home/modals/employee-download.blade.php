@@ -17,6 +17,9 @@
                     <label>Employee Directory</label>
                     <input type="text" class="form-control form-control-sm" value="{{ $employee_id.'-'.$full_name }}" readonly>
                 </div>
+
+                <hr class="hr-text" data-content="Files Information">
+
                 <div
                     class="md-form mb-3 d-flex justify-content-around"
                     x-data="{}"

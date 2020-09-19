@@ -19,8 +19,12 @@ Route::livewire('/', 'home.main')
         'title' => 'Home'
     ])
     ->middleware('auth');
+
 Route::get('/download/{folder}/{file}', 'IDMController@download')
     ->name('download');
+
+Route::get('/stream/{folder}/{file}', 'StreamFileController@getStream')
+    ->name('stream');
 
 Route::group(['middleware'=>'guest'], function() {
     Route::livewire('/login', 'login')
