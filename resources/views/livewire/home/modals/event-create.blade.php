@@ -8,20 +8,30 @@
             <div class="modal-body mx-3">
                 <div class="md-form mb-3">
                     <label>Event Name <span class="text-c-red">*</span></label>
-                    <input type="text" class="form-control" wire:model="event_name">
+                    <div class="input-group input-group-button">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-sm btn-secondary" wire:click="sendCuti">Cuti? <i class="icofont icofont-arrow-right"></i></button>
+                        </div>
+                        <input wire:model="event_name" type="text" class="form-control">
+                    </div>
                     @error('event_name') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
                 <div class="md-form mb-3">
                     <label>Choose number of employees <span class="text-c-red">*</span></label>
                     @if($employees)
-                    <input class="form-control" type="number" wire:model="employee_count" max="{{ $employees->count() }}">
+                    <input class="form-control mb-2" type="number" wire:model="employee_count" min="0" max="{{ $employees->count() }}">
+                    <div class="row">
                     @for($f = 0; $f < $employee_count; $f++)
-                    <select class="form-control" wire:model="employee_ids.{{ $f }}">
-                        @foreach($employees as $emp)
-                        <option value="{{ $emp->id }}">{{ $emp->full_name }}</option>
-                        @endforeach
-                    </select>
+                    <div class="col-lg-4">
+                        <select class="form-control" wire:model="employee_ids.{{ $f }}">
+                            <option value="">-- CHOOSE --</option>
+                            @foreach($employees as $emp)
+                            <option value="{{ $emp->id }}">{{ $emp->full_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @endfor
+                    </div>
                     @error('employee_count') <span class="text-danger error">{{ $message }}</span>@enderror
                     @else
                     <input type="text" class="form-control" value="PLEASE, GO BACK & INSERT EMPLOYEE INFO FIRST!!" readonly>

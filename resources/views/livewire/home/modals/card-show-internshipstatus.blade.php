@@ -38,10 +38,12 @@
                                 <label style="color:#6D4786;font-size:15px;font-weight: bold;">Join Date :</label><br>
                                 <label style="font-size:15px;"><i class="icofont icofont-calendar"></i> {{ timeForHuman($join_date,'standard') }}</label>
                             </div>
+                            @if(strtotime($end_date))
                             <div class="col-lg-6">
                                 <label style="color:#6D4786;font-size:15px;font-weight: bold;">End Date :</label><br>
                                 <label style="font-size:15px;"><i class="icofont icofont-calendar"></i> {{ timeForHuman($end_date,'standard') }}</label>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

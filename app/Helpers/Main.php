@@ -16,9 +16,14 @@ function forCalendar($datetime)
             $datetime[$k]['borderColor'] = '#4680ff';
             $datetime[$k]['backgroundColor'] = '#4680ff';
             $datetime[$k]['textColor'] = '#fff';
-        } else {
+        } else if ($datetime[$k]['event_type'] == 'Recurring Yearly') {
             $datetime[$k]['borderColor'] = '#93BE52';
             $datetime[$k]['backgroundColor'] = '#93BE52';
+            $datetime[$k]['textColor'] = '#fff';
+        }
+        if (strpos($datetime[$k]['event_name'], 'Cuti:') !== false) {
+            $datetime[$k]['borderColor'] = '#FFB64D';
+            $datetime[$k]['backgroundColor'] = '#FFB64D';
             $datetime[$k]['textColor'] = '#fff';
         }
         unset($datetime[$k]['event_name']);
@@ -51,8 +56,12 @@ function timeForHuman($input_date, $status_hms = NULL) {
 
 function daysDifference($firstDate, $secondDate)
 {
-    $datediff = strtotime($secondDate) - strtotime($firstDate);
-    return round($datediff / (60 * 60 * 24));
+    if (empty($secondDate)) {
+        return 0;
+    } else {
+        $datediff = strtotime($secondDate) - strtotime($firstDate);
+        return round($datediff / (60 * 60 * 24));
+    }
 }
 
 function getXMonthsToTheFuture( $base_time = null, $months = 1 )

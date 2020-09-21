@@ -154,7 +154,7 @@ class Employee extends Component
         $post->position = $this->position;
         $post->status = 'Active';
         $post->join_date = date('Y-m-d', strtotime($this->join_date));
-        $post->end_date = date('Y-m-d', strtotime($this->end_date));
+        $post->end_date = strtotime($this->end_date) ? date('Y-m-d', strtotime($this->end_date)) : NULL ;
         $post->contract_duration = $this->contract_duration;
         $post->save();
 
@@ -182,6 +182,9 @@ class Employee extends Component
         $post->employee_files()->save($post_files);
 
         $this->emit('employeeStore'); // Close model to using to jquery
+        $this->emitTo('home.card', 'cardRefresh'); // Refresh count employee
+        $this->emitTo('home.calender', 'employeeRefresh'); // Refresh employee
+        $this->emitTo('home.event-current', 'eventRefresh'); // Refresh employee
         session()->flash('success-employee', 'New Employee has been added.');
         $this->resetInputFields();
     }
@@ -226,6 +229,8 @@ class Employee extends Component
         $post->save();
 
         $this->emit('employeeUpdate'); // Close model to using to jquery
+        $this->emitTo('home.calender', 'employeeRefresh'); // Refresh employee
+        $this->emitTo('home.event-current', 'eventRefresh'); // Refresh employee
         session()->flash('success-employee', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been updated.');
         $this->resetInputFields();
     }
@@ -302,6 +307,9 @@ class Employee extends Component
         $post->delete();
 
         $this->emit('employeeDelete'); // Close model to using to jquery
+        $this->emitTo('home.card', 'cardRefresh'); // Refresh count employee
+        $this->emitTo('home.calender', 'employeeRefresh'); // Refresh employee
+        $this->emitTo('home.event-current', 'eventRefresh'); // Refresh employee
         session()->flash('success-employee', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been deleted.');
         $this->resetInputFields();
     }

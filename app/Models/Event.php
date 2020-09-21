@@ -18,6 +18,7 @@ class Event extends Model
         'event_start',
         'event_end',
         'event_details',
+        'event_status',
         'event_type'
     ];
 
