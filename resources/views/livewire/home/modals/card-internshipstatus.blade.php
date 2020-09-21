@@ -54,7 +54,7 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                                     <tr>
                                         <td>{{ $emp->full_name }}</td>
                                         <td>{{ $emp->position }}</td>
-                                        <td><i class="icofont icofont-clock-time"></i> <span class="font-weight-bold">{{ daysDifference($emp->join_date,$emp->end_date) }} days remaining, </span>(End at {{ timeForHuman($emp->end_date,"standard") }})</td>
+                                        <td><i class="icofont icofont-clock-time"></i> <span class="font-weight-bold">{{ daysDifference(now(),$emp->end_date) }} days remaining, </span>(End at {{ timeForHuman($emp->end_date,"standard") }})</td>
                                         <td>{!! ($emp->status=="Active") ? '<i
                                                 class="icofont icofont-tick-mark"></i> Active' : '<i
                                                 class="icofont icofont-close"></i> Inactive' !!}</td>

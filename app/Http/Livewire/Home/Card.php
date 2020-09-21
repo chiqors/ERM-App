@@ -25,7 +25,7 @@ class Card extends Component
     
     // Initialize listener
     protected $listeners = [
-        'cardRefresh' => 'refreshListener',
+        'cardRefresh' => '$refresh',
     ];
     // -------------------
 

@@ -42,6 +42,14 @@ class Employee extends Component
         $this->iteration = 0;
 
         $this->contract_duration = NULL;
+        $check_employee = Emp::where('id', '!=', \Auth::user()->id)->get();
+        foreach ($check_employee as $cemp) {
+            if ($cemp->end_date < today()) {
+                $emp_post = Emp::find($cemp->id);
+                $emp_post->status = 'Inactive';
+                $emp_post->save();
+            }
+        }
     }
 
     // Rendering on each function fired Client-side
@@ -229,6 +237,7 @@ class Employee extends Component
         $post->save();
 
         $this->emit('employeeUpdate'); // Close model to using to jquery
+        $this->emitTo('home.card', 'cardRefresh'); // Refresh count employee
         $this->emitTo('home.calender', 'employeeRefresh'); // Refresh employee
         $this->emitTo('home.event-current', 'eventRefresh'); // Refresh employee
         session()->flash('success-employee', 'Employee <span class="font-weight-bold">'.$this->full_name.'</span> has been updated.');

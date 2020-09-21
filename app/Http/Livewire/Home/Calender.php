@@ -25,7 +25,7 @@ class Calender extends Component
 
     // Initialize listener
     protected $listeners = [
-        'calenderRefresh' => 'calenderRefreshListener',
+        'calenderRefresh' => '$refresh',
         'employeeRefresh' => 'employeeRefreshListener'
     ];
     // -------------------
