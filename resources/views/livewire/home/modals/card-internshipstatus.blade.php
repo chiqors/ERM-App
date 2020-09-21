@@ -24,15 +24,6 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                             </div>
                         </div>
                     </div>
-        
-                    <div class="col-12 col-lg-6">
-                        <div class="input-group">
-                            <input wire:model="search" type="text" class="form-control" placeholder="Full Name / Position">
-                            <span class="input-group-append">
-                                <label class="input-group-text"><i class="icofont icofont-ui-search"></i></label>
-                            </span>
-                        </div>
-                    </div>
                 </div>
         
                 <div class="row">
@@ -41,18 +32,18 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                             <table class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
-                                        <th><a wire:click.prevent="sortBy('full_name')" role="button" href="#">
+                                        <th width="70">
                                             Name
-                                            @include('includes.dt-sorticon', ['field' => 'full_name'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('position')" role="button" href="#">
+                                        </th>
+                                        <th width="70">
                                             Position
-                                            @include('includes.dt-sorticon', ['field' => 'position'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
+                                        </th>
+                                        <th width="70">
+                                            Contract
+                                        </th>
+                                        <th width="70">
                                             Status
-                                            @include('includes.dt-sorticon', ['field' => 'status'])
-                                        </a></th>
+                                        </th>
                                         <th width="70">
                                             Action
                                         </th>
@@ -63,11 +54,12 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                                     <tr>
                                         <td>{{ $emp->full_name }}</td>
                                         <td>{{ $emp->position }}</td>
+                                        <td><i class="icofont icofont-clock-time"></i> <span class="font-weight-bold">{{ daysDifference($emp->join_date,$emp->end_date) }} days remaining, </span>(End at {{ timeForHuman($emp->end_date,"standard") }})</td>
                                         <td>{!! ($emp->status=="Active") ? '<i
                                                 class="icofont icofont-tick-mark"></i> Active' : '<i
                                                 class="icofont icofont-close"></i> Inactive' !!}</td>
                                         <td>
-                                            <a style="cursor: pointer" wire:click="show({{ $emp->id }})" class="icofont icofont-file-text" data-toggle="modal"
+                                            <a style="cursor: pointer" wire:click="show_internship({{ $emp->id }})" class="icofont icofont-file-text" data-toggle="modal"
                                                 data-target="#modalCardShowInternshipStatus" data-dismiss="modal"></a></td>
                                     </tr>
                                     @endforeach

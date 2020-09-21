@@ -18,8 +18,13 @@
                         <input class="form-control" type="number" wire:model="employee_count">
                         @for($f = 0; $f < $employee_count; $f++)
                         <select class="form-control" wire:model="employee_ids.{{ $f }}">
+                            <option value="">-- CHOOSE --</option>
                             @foreach($employees as $emp)
+                            @if(empty($employee_ids[$f]))
                             <option value="{{ $emp->id }}" {{ (@$employee_ids[$f]==$emp->id) ? 'selected' : '' }}>{{ $emp->full_name }}</option>
+                            @else
+                            <option value="{{ $emp->id }}">{{ $emp->full_name }}</option>
+                            @endif
                             @endforeach
                         </select>
                         @endfor

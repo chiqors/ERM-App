@@ -19,13 +19,14 @@ class Calender extends Component
 
     // Initialize model of event with variables
     public $calendar;
-    public $employees, $employee_count, $event_id, $event_name, $event_type, $event_start, $event_end, $event_details;
+    public $employees, $employee_count, $event_id, $event_name, $event_type, $event_start, $event_end, $event_details, $event_status;
     public $employee_ids, $employee_names, $relation;
     // ----------------------------------------
 
     // Initialize listener
     protected $listeners = [
-        'calenderRefresh' => 'calenderRefreshListener'
+        'calenderRefresh' => 'calenderRefreshListener',
+        'employeeRefresh' => 'employeeRefreshListener'
     ];
     // -------------------
 
@@ -37,8 +38,14 @@ class Calender extends Component
         $this->sortAsc = true;
         $this->search = '';
 
-        @$calendar_render = forCalendar(Event::all()->toArray());
-        $this->employees = Employee::all();
+        $calendar = Event::all();
+        @$calendar_render = forCalendar($calendar->toArray());
+        $this->employees = Employee::where('id', '!=', \Auth::user()->id)
+            ->where(function ($query) {
+                $query->where('end_date', '>=', now())
+                    ->orWhereNull('end_date');
+            })
+            ->get();
         $this->calendar = $calendar_render;
 
         $this->perPage = 5;
@@ -70,6 +77,7 @@ class Calender extends Component
         $this->event_start = '';
         $this->event_end = '';
         $this->event_details = '';
+        $this->event_status = '';
 
         $this->employee_ids = [];
         $this->employee_names = [];
@@ -101,6 +109,16 @@ class Calender extends Component
         $this->calendar = forCalendar(Event::all()->toArray());
     }
 
+    public function employeeRefreshListener()
+    {
+        $this->employees = Employee::where('id', '!=', \Auth::user()->id)
+            ->where(function ($query) {
+                $query->where('end_date', '>=', now())
+                    ->orWhereNull('end_date');
+            })
+            ->get();
+    }
+
     // --------------
     // CASTO FUNCTION
     // --------------
@@ -108,6 +126,11 @@ class Calender extends Component
     public function cancel()
     {
         $this->resetInputFields();
+    }
+
+    public function sendCuti()
+    {
+        $this->event_name = "Cuti: ";
     }
 
     public function store()
@@ -125,6 +148,7 @@ class Calender extends Component
         $post->event_start = date('Y-m-d H:i:s', strtotime($this->event_start));
         $post->event_end = date('Y-m-d H:i:s', strtotime($this->event_end));
         $post->event_details = $this->event_details;
+        $post->event_status = 'Progress';
         $post->save();
         $post_last_id = $post->id;
 
@@ -149,8 +173,8 @@ class Calender extends Component
         $this->event_id = $eve->id;
         $this->event_name = $eve->event_name;
         $this->event_type = $eve->event_type;
-        $this->event_start = $eve->event_start;
-        $this->event_end = $eve->event_end;
+        $this->event_start = date('Y-m-d\TH:i', strtotime($eve->event_start));
+        $this->event_end = date('Y-m-d\TH:i', strtotime($eve->event_end));
         $this->event_details = $eve->event_details;
         $this->employee_count = $eve->employee->count();
         foreach ($eve->employee as $evp) {

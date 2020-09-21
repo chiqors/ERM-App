@@ -24,15 +24,6 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                             </div>
                         </div>
                     </div>
-        
-                    <div class="col-12 col-lg-6">
-                        <div class="input-group">
-                            <input wire:model="search" type="text" class="form-control" placeholder="Full Name / Position">
-                            <span class="input-group-append">
-                                <label class="input-group-text"><i class="icofont icofont-ui-search"></i></label>
-                            </span>
-                        </div>
-                    </div>
                 </div>
         
                 <div class="row">
@@ -41,18 +32,15 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                             <table class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
-                                        <th><a wire:click.prevent="sortBy('full_name')" role="button" href="#">
-                                            Name
-                                            @include('includes.dt-sorticon', ['field' => 'full_name'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('position')" role="button" href="#">
-                                            Position
-                                            @include('includes.dt-sorticon', ['field' => 'position'])
-                                        </a></th>
-                                        <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
-                                            Status
-                                            @include('includes.dt-sorticon', ['field' => 'status'])
-                                        </a></th>
+                                        <th width="70">
+                                            Event Name
+                                        </th>
+                                        <th width="70">
+                                            Employee
+                                        </th>
+                                        <th width="70">
+                                            Work Leaves
+                                        </th>
                                         <th width="70">
                                             Action
                                         </th>
@@ -60,21 +48,24 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                                 </thead>
                                 <tbody>
                                     @if(!$workleavesreport->isEmpty())
-                                    @foreach ($workleavesreport as $emp)
+                                    @foreach ($workleavesreport as $ev)
                                     <tr>
-                                        <td>{{ $emp->full_name }}</td>
-                                        <td>{{ $emp->position }}</td>
-                                        <td>{!! ($emp->status=="Active") ? '<i
-                                                class="icofont icofont-tick-mark"></i> Active' : '<i
-                                                class="icofont icofont-close"></i> Inactive' !!}</td>
+                                        <td>{{ $ev->event_name }}</td>
                                         <td>
-                                            <a style="cursor: pointer" wire:click="show({{ $emp->id }})" class="icofont icofont-file-text" data-toggle="modal"
+                                            @foreach($ev->employee as $emp)
+                                            {{ $loop->first ? '' : '-' }}
+                                            <span class="nice">{{ $emp->full_name }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td><span class="font-weight-bold">{{ daysDifference($ev->event_start, $ev->event_end) }} days remaining, </span>(End at {{ timeForHuman($ev->event_end,"standard") }})</td>
+                                        <td>
+                                            <a style="cursor: pointer" wire:click="show_workleavesreport({{ $ev->id }})" class="icofont icofont-file-text" data-toggle="modal"
                                                 data-target="#modalCardShowWorkLeavesReport" data-dismiss="modal"></a></td>
                                     </tr>
                                     @endforeach
                                     @else
                                     <tr>
-                                        <td colspan="5" class="text-center">
+                                        <td colspan="4" class="text-center">
                                             No data available
                                         </td>
                                     </tr>

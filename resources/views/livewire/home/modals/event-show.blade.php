@@ -52,7 +52,7 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                 </div>
                 <div class="md-form mb-4">
                     <label style="color:#6D4786;font-size:15px;font-weight: bold;">Event Details :</label><br>
-                <label style="font-size:15px;text-align: justify;">{!! $event_details !!}</label>
+                    <label style="font-size:15px;text-align: justify;">{!! $event_details !!}</label>
                 </div>
             </div>
         </div>

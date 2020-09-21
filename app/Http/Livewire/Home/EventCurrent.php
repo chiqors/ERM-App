@@ -19,7 +19,7 @@ class EventCurrent extends Component
 
     // Initialize listener
     protected $listeners = [
-        'eventRefresh' => 'render'
+        'eventRefresh' => 'render',
     ];
     // -------------------
 
@@ -36,7 +36,8 @@ class EventCurrent extends Component
     {
         $event_id_log = ActivityLogs::pluck('event_id')->all();
         $query = Event::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->where('event_start', '<=', Carbon::today())
+                    ->whereDate('event_start', '<=', today()->toDateString())
+                    ->where('event_status', 'Progress')
                     ->paginate($this->perPage);
         return view('livewire.home.event-current', [
             'events' => $query
@@ -75,11 +76,17 @@ class EventCurrent extends Component
     {
         $update = Event::find($ev_id);
         if ($update->event_type == 'Recurring Monthly') {
-            $update->event_start = $date = date('Y-m-d', strtotime('+1 month', strtotime($update->event_start)));
+            $update->event_start = Carbon::parse($update->event_start)->addMonth();
+            $update->event_end = Carbon::parse($update->event_end)->addMonth();
             $update->save();
         }
         if ($update->event_type == 'Recurring Yearly') {
-            $update->event_start = $date = date('Y-m-d', strtotime('+1 year', strtotime($update->event_start)));
+            $update->event_start = Carbon::parse($update->event_start)->addYear();
+            $update->event_end = Carbon::parse($update->event_end)->addYear();
+            $update->save();
+        }
+        if ($update->event_type == 'One Time') {
+            $update->event_status = "Done";
             $update->save();
         }
         if ($status) {
