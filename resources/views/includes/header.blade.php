@@ -32,9 +32,6 @@
                     </a>
                     <ul class="show-notification profile-notification">
                         <li class="waves-effect waves-light">
-                            @livewire('settings')
-                        </li>
-                        <li class="waves-effect waves-light">
                             @livewire('logout')
                         </li>
                     </ul>
