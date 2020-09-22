@@ -38,9 +38,12 @@ class Calender extends Component
         $this->sortAsc = true;
         $this->search = '';
 
-        $calendar = Event::all();
+        $calendar = Event::with(['employee' => function($q){
+            $q->where('status', 'Active');
+        }])->get();
         @$calendar_render = forCalendar($calendar->toArray());
         $this->employees = Employee::where('id', '!=', \Auth::user()->id)
+            ->where('status', 'Active')
             ->where(function ($query) {
                 $query->where('end_date', '>=', now())
                     ->orWhereNull('end_date');
@@ -64,6 +67,9 @@ class Calender extends Component
     {
         return view('livewire.home.calender', [
             'events' => Event::search($this->search)
+                ->with(['employee' => function($q){
+                    $q->where('status', 'Active');
+                }])
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage)
         ]);

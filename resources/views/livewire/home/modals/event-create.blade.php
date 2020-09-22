@@ -6,21 +6,28 @@
                 <h4 class="modal-title w-100 font-weight-bold">Create Event</h4>
             </div>
             <div class="modal-body mx-3">
-                <div class="md-form mb-3">
-                    <label>Event Name <span class="text-c-red">*</span></label>
-                    <div class="input-group input-group-button">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-sm btn-secondary" wire:click="sendCuti">Cuti? <i class="icofont icofont-arrow-right"></i></button>
+                <div class="md-form row">
+                    <div class="col-lg-6">
+                        <label>Event Name <span class="text-c-red">*</span></label>
+                        <div class="input-group input-group-button">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-sm btn-secondary" wire:click="sendCuti">Cuti? <i class="icofont icofont-arrow-right"></i></button>
+                            </div>
+                            <input wire:model="event_name" type="text" class="form-control">
                         </div>
-                        <input wire:model="event_name" type="text" class="form-control">
+                        @error('event_name') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
-                    @error('event_name') <span class="text-danger error">{{ $message }}</span>@enderror
+                    <div class="col-lg-6">
+                        <label>Choose number of employees <span class="text-c-red">*</span></label>
+                        @if($employees)
+                        <input class="form-control mb-2" type="number" wire:model="employee_count" min="0" max="{{ $employees->count() }}">
+                        @else
+                        <input type="text" class="form-control" value="PLEASE, GO BACK & INSERT EMPLOYEE INFO FIRST!!" readonly>
+                        @endif
+                        @error('employee_count') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
                 </div>
-                <div class="md-form mb-3">
-                    <label>Choose number of employees <span class="text-c-red">*</span></label>
-                    @if($employees)
-                    <input class="form-control mb-2" type="number" wire:model="employee_count" min="0" max="{{ $employees->count() }}">
-                    <div class="row">
+                <div class="md-form row mb-3">
                     @for($f = 0; $f < $employee_count; $f++)
                     <div class="col-lg-4">
                         <select class="form-control" wire:model="employee_ids.{{ $f }}">
@@ -31,11 +38,6 @@
                         </select>
                     </div>
                     @endfor
-                    </div>
-                    @error('employee_count') <span class="text-danger error">{{ $message }}</span>@enderror
-                    @else
-                    <input type="text" class="form-control" value="PLEASE, GO BACK & INSERT EMPLOYEE INFO FIRST!!" readonly>
-                    @endif
                 </div>
                 <div class="md-form mb-3">
                     <label>Event Type <span class="text-c-red">*</span></label>

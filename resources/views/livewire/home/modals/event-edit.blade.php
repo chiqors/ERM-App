@@ -7,31 +7,42 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="modal-body mx-3">
-                    <div class="md-form mb-3">
-                        <label>Event Name <span class="text-c-red">*</span></label>
-                        <input type="text" class="form-control" wire:model="event_name">
-                        @error('event_name') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div>
-                    <div class="md-form mb-3">
-                        <label>Choose number of employees <span class="text-c-red">*</span></label>
-                        @if($employees)
-                        <input class="form-control" type="number" wire:model="employee_count">
-                        @for($f = 0; $f < $employee_count; $f++)
-                        <select class="form-control" wire:model="employee_ids.{{ $f }}">
-                            <option value="">-- CHOOSE --</option>
-                            @foreach($employees as $emp)
-                            @if(empty($employee_ids[$f]))
-                            <option value="{{ $emp->id }}" {{ (@$employee_ids[$f]==$emp->id) ? 'selected' : '' }}>{{ $emp->full_name }}</option>
+                    <div class="md-form row">
+                        <div class="col-lg-6">
+                            <label>Event Name <span class="text-c-red">*</span></label>
+                            <div class="input-group input-group-button">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-sm btn-secondary" wire:click="sendCuti">Cuti? <i class="icofont icofont-arrow-right"></i></button>
+                                </div>
+                                <input wire:model="event_name" type="text" class="form-control">
+                            </div>
+                            @error('event_name') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Choose number of employees <span class="text-c-red">*</span></label>
+                            @if($employees)
+                            <input class="form-control mb-2" type="number" wire:model="employee_count" min="0" max="{{ $employees->count() }}">
                             @else
-                            <option value="{{ $emp->id }}">{{ $emp->full_name }}</option>
+                            <input type="text" class="form-control" value="PLEASE, GO BACK & INSERT EMPLOYEE INFO FIRST!!" readonly>
                             @endif
-                            @endforeach
-                        </select>
+                            @error('employee_count') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                    </div>
+                    <div class="md-form row mb-3">
+                        @for($f = 0; $f < $employee_count; $f++)
+                        <div class="col-lg-4">
+                            <select class="form-control" wire:model="employee_ids.{{ $f }}">
+                                <option value="">-- CHOOSE --</option>
+                                @foreach($employees as $emp)
+                                @if(empty($employee_ids[$f]))
+                                <option value="{{ $emp->id }}" {{ (@$employee_ids[$f]==$emp->id) ? 'selected' : '' }}>{{ $emp->full_name }}</option>
+                                @else
+                                <option value="{{ $emp->id }}">{{ $emp->full_name }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
                         @endfor
-                        @error('employee_count') <span class="text-danger error">{{ $message }}</span>@enderror
-                        @else
-                        <input type="text" class="form-control" value="PLEASE, GO BACK & INSERT EMPLOYEE INFO FIRST!!" readonly>
-                        @endif
                     </div>
                     <div class="md-form mb-3">
                         <label>Event Type <span class="text-c-red">*</span></label>
@@ -67,7 +78,7 @@
                     <div class="modal-footer d-flex justify-content-right">
                         <div wire:loading.remove wire:target="update">
                             <button wire:click.prevent="cancel" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Cancel</button>
-                            <button wire:click.prevent="update" class="btn btn-warning waves-effect waves-light"><i class="icofont icofont-swoosh-up"></i> Update</button>
+                            <button wire:click.prevent="update" class="btn btn-warning waves-effect waves-light" style="background-color: #FFB012"><i class="icofont icofont-swoosh-up"></i> Update</button>
                         </div>
                         <div wire:loading wire:target="update" wire:loading.class="btn btn-outline-info waves-effect waves-light disabled">
                             <i class="icofont icofont-cloud-upload"></i> Loading..

@@ -29,6 +29,13 @@ class EventCurrent extends Component
         $this->perPage = 3;
         $this->sortField = 'event_name';
         $this->sortAsc = true;
+
+        $check_update = Event::all();
+        foreach ($check_update as $cu) {
+            if ($cu->event_end < Carbon::now()) {
+                $this->complete($cu->id, true);
+            }
+        }
     }
 
     // Rendering on each function fired Client-side
@@ -36,6 +43,9 @@ class EventCurrent extends Component
     {
         $event_id_log = ActivityLogs::pluck('event_id')->all();
         $query = Event::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->with(['employee' => function($q){
+                        $q->where('status', 'Active');
+                    }])
                     ->whereDate('event_start', '<=', today()->toDateString())
                     ->where('event_status', 'Progress')
                     ->paginate($this->perPage);
@@ -75,14 +85,16 @@ class EventCurrent extends Component
     public function complete($ev_id, $status)
     {
         $update = Event::find($ev_id);
+        $monthDiff = dateDifference($update->event_end, now(), "%m");
+        $yearDiff = dateDifference($update->event_end, now(), "%y");
         if ($update->event_type == 'Recurring Monthly') {
-            $update->event_start = Carbon::parse($update->event_start)->addMonth();
-            $update->event_end = Carbon::parse($update->event_end)->addMonth();
+            $update->event_start = Carbon::parse($update->event_start)->addMonths($monthDiff+1);
+            $update->event_end = Carbon::parse($update->event_end)->addMonths($monthDiff+1);
             $update->save();
         }
         if ($update->event_type == 'Recurring Yearly') {
-            $update->event_start = Carbon::parse($update->event_start)->addYear();
-            $update->event_end = Carbon::parse($update->event_end)->addYear();
+            $update->event_start = Carbon::parse($update->event_start)->addYears($yearDiff+1);
+            $update->event_end = Carbon::parse($update->event_end)->addYears($yearDiff+1);
             $update->save();
         }
         if ($update->event_type == 'One Time') {

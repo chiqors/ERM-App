@@ -7,15 +7,24 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form row mb-3">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Employee Name <span class="text-c-red">*</span></label>
                         <input type="text" class="form-control form-control-sm" wire:model="full_name">
                         @error('full_name') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Position <span class="text-c-red">*</span></label>
                         <input type="text" class="form-control form-control-sm" wire:model="position">
                         @error('position') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Status <span class="text-c-red">*</span></label>
+                        <select class="form-control form-control-sm" wire:model="status">
+                            <option value="">-- CHOOSE --</option>
+                            <option value="Active" {{ ($status == "Active") ? 'selected' : '' }}>Active</option>
+                            <option value="Inactive" {{ ($status == "Active") ? 'selected' : '' }}>Inactive</option>
+                        </select>
+                        @error('status') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                 </div>
 
@@ -41,7 +50,6 @@
                     <div class="col-lg-2">
                         <label>Contracts <span class="text-c-red">*</span></label>
                         <button class="btn btn-sm btn-primary" type="button" wire:click="$emit('contractCalc')"><span class="icofont icofont-calculations"></span> Calculate</button>
-                        <input type="hidden" class="form-control" value="Aktif" wire:model="status">
                     </div>
                 </div>
 
@@ -60,7 +68,7 @@
             <div class="modal-footer d-flex justify-content-right">
                 <div wire:loading.remove wire:target="update">
                     <button wire:click.prevent="cancel" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Cancel</button>
-                    <button wire:click.prevent="update" class="btn btn-warning waves-effect waves-light"><i class="icofont icofont-swoosh-up"></i> Update</button>
+                    <button wire:click.prevent="update" class="btn btn-warning waves-effect waves-light" style="background-color: #FFB012"><i class="icofont icofont-swoosh-up"></i> Update</button>
                 </div>
                 <div wire:loading wire:target="update" wire:loading.class="btn btn-outline-info waves-effect waves-light disabled">
                     <i class="icofont icofont-cloud-upload"></i> Loading..

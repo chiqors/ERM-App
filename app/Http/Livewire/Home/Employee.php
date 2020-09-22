@@ -116,7 +116,7 @@ class Employee extends Component
         if (is_null($this->end_date)) {
             return $this->contract_duration = 0;
         }
-        $this->contract_duration = daysDifference($this->join_date, $this->end_date);
+        $this->contract_duration = dateDifference($this->join_date, $this->end_date, "%a");
         if ($this->contract_duration < 0) {
             $this->end_date = '';
             $this->contract_duration = NULL;

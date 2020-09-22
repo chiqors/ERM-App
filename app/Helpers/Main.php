@@ -44,6 +44,9 @@ function timeForHuman($input_date, $status_hms = NULL) {
         case "timeOnly":
             $view_time = date("h:i", $time);
             break;
+        case "current":
+            $view_time = date("l jS Y, h:i A", $time);
+            break;
         case "current_month":
             $view_time = date("l jS, h:i A", $time);
             break;
@@ -54,14 +57,12 @@ function timeForHuman($input_date, $status_hms = NULL) {
     return $view_time;
 }
 
-function daysDifference($firstDate, $secondDate)
+function dateDifference($date_1, $date_2, $differenceFormat)
 {
-    if (empty($secondDate)) {
-        return 0;
-    } else {
-        $datediff = strtotime($secondDate) - strtotime($firstDate);
-        return round($datediff / (60 * 60 * 24));
-    }
+    $datetime1 = date_create($date_1);
+    $datetime2 = date_create($date_2);
+    $interval = date_diff($datetime1, $datetime2);
+    return $interval->format($differenceFormat);
 }
 
 function getXMonthsToTheFuture( $base_time = null, $months = 1 )

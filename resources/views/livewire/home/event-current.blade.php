@@ -42,9 +42,13 @@
                                             <span class="nice">{{ $emp->full_name }}</span>
                                             @endforeach
                                         </td>
-                                        <td>{{ $ev->event_name }}</td>
-                                        <td>{{ $ev->event_type }}</td>
-                                        <td>{{ timeForHuman($ev->event_start, 'current_month') }} - {{ timeforHuman($ev->event_end, 'current_month') }}</td>
+                                        <td><span class="label" style="background-color: {{ (strtok($ev->event_name, " ")=="Cuti:") ? '#FFB012' : '#546D77' }}">{{ $ev->event_name }}</span></td>
+                                        <td><span class="label {{ ($ev->event_type=="One Time") ? 'bg-danger' : (($ev->event_type=="Recurring Monthly") ? 'bg-primary' : 'bg-success') }}">{{ $ev->event_type }}</span></td>
+                                        <td>
+                                            <i class="icofont icofont-ui-calendar text-c-blue"></i> {{ timeforHuman($ev->event_start,"current") }}
+                                            <br>
+                                            <i class="icofont icofont-flag-alt-2 text-c-green"></i> {{ timeforHuman($ev->event_end,"current") }}
+                                        </td>
                                         <td>
                                             <a style="cursor: pointer" wire:click="complete({{ $ev->id }},true)" class="icofont icofont-check mr-3"></a>
                                             <a style="cursor: pointer" wire:click="complete({{ $ev->id }},false)" class="icofont icofont-close mr-3"></a>

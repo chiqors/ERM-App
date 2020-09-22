@@ -51,6 +51,9 @@ class Card extends Component
     {
         return view('livewire.home.card', [
             'workleavesreport' => Event::where('event_name', 'LIKE', 'Cuti:%')
+                ->with(['employee' => function($q){
+                    $q->where('status', 'Active');
+                }])
                 ->where('event_start', '<=', now())
                 ->where('event_end', '>=', now())
                 ->paginate($this->perPage),

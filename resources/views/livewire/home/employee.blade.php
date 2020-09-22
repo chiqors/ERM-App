@@ -30,7 +30,7 @@
                 <div class="input-group">
                     <input wire:model="search" type="text" class="form-control" placeholder="Full Name / Position">
                     <span class="input-group-append">
-                        <label class="input-group-text"><i class="icofont icofont-ui-search"></i></label>
+                        <label class="input-group-text" style="background-color: #6D4786"><i class="icofont icofont-ui-search"></i></label>
                     </span>
                 </div>
             </div>
@@ -39,25 +39,25 @@
         <div class="row">
             <div class="col">
                 <div class="table-responsive dt-responsive" style="border: 1px solid #dee2e6;">
-                    <table class="table table-striped table-bordered nowrap">
+                    <table class="table table-bordered nowrap">
                         <thead>
-                            <tr>
-                                <th><a wire:click.prevent="sortBy('full_name')" role="button" href="#">
+                            <tr style="background-color: #6D4786">
+                                <th><a style="color: white !important" wire:click.prevent="sortBy('full_name')" role="button" href="#">
                                     Name
                                     @include('includes.dt-sorticon', ['field' => 'full_name'])
                                 </a></th>
-                                <th><a wire:click.prevent="sortBy('position')" role="button" href="#">
+                                <th><a style="color: white !important" wire:click.prevent="sortBy('position')" role="button" href="#">
                                     Position
                                     @include('includes.dt-sorticon', ['field' => 'position'])
                                 </a></th>
-                                <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
+                                <th><a style="color: white !important" wire:click.prevent="sortBy('status')" role="button" href="#">
                                     Status
                                     @include('includes.dt-sorticon', ['field' => 'status'])
                                 </a></th>
-                                <th width="50">
+                                <th width="50" style="color: white !important">
                                     File
                                 </th>
-                                <th width="70">
+                                <th width="70" style="color: white !important">
                                     Action
                                 </th>
                             </tr>
@@ -68,9 +68,17 @@
                             <tr>
                                 <td>{{ $emp->full_name }}</td>
                                 <td>{{ $emp->position }}</td>
-                                <td>{!! ($emp->status=="Active") ? '<i
-                                        class="icofont icofont-tick-mark"></i> Active' : '<i
-                                        class="icofont icofont-close"></i> Inactive' !!}</td>
+                                <td>
+                                    @if($emp->status=="Inactive")
+                                    <span class="label label-inverse">
+                                        <i class="icofont icofont-close"></i> Inactive
+                                    </span>
+                                    @else
+                                    <span class="label label-info">
+                                    <i class="icofont icofont-tick-mark"></i> Active
+                                    </span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a style="cursor: pointer" wire:click="show({{ $emp->id }})" class="icofont icofont-download mr-3" data-toggle="modal"
                                     data-target="#modalDownloadEmployee"></a>

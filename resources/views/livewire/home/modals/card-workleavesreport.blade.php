@@ -57,7 +57,7 @@ aria-hidden="true" data-keyboard="false" data-backdrop="static">
                                             <span class="nice">{{ $emp->full_name }}</span>
                                             @endforeach
                                         </td>
-                                        <td><span class="font-weight-bold"><i class="icofont icofont-clock-time"></i> {{ daysDifference(now(), $ev->event_end) }} days remaining, </span>(End at {{ timeForHuman($ev->event_end,"standard") }})</td>
+                                        <td><span class="font-weight-bold"><i class="icofont icofont-clock-time"></i> {{ dateDifference(now(), $ev->event_end, "%a") }} days remaining, </span>(End at {{ timeForHuman($ev->event_end,"standard") }})</td>
                                         <td>
                                             <a style="cursor: pointer" wire:click="show_workleavesreport({{ $ev->id }})" class="icofont icofont-file-text" data-toggle="modal"
                                                 data-target="#modalCardShowWorkLeavesReport" data-dismiss="modal"></a></td>
