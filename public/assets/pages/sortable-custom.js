@@ -1,0 +1,1 @@
+'use strict';$(function(){$("#draggablePanelList,#draggableMultiple,#draggableWithoutImg").sortable({revert:true,animation:150});});
